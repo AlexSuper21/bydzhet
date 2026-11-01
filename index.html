@@ -233,11 +233,11 @@
       </div>
     </div>
 
-    <!-- 3. КУХНЯ -->
+    <!-- 3. КУХНЯ (ПОВАРЕННАЯ КНИГА) -->
     <div class="slide">
       <div class="inner">
-        <div class="title">Меню на неделю</div>
-        <button class="btn btn-p btn-block" style="margin-bottom:16px;" onclick="window.openDish()">+ Добавить в Поваренную книгу</button>
+        <div class="title">Поваренная книга</div>
+        <button class="btn btn-p btn-block" style="margin-bottom:16px;" onclick="window.openDish()">+ Добавить рецепт</button>
         <div id="menuList"></div>
       </div>
     </div>
@@ -330,7 +330,21 @@
   </div>
 </div>
 
-<div class="ov" id="mDish"><div class="mod"><div class="mod-head"><div class="mod-title">Новое блюдо</div><button class="close" onclick="window.closeModals()">×</button></div><div class="fld"><label>Название блюда</label><input id="iDishName" placeholder="Котлеты"></div><div class="fld"><label>Ингредиент</label><input id="iIngName" placeholder="Фарш" list="prodList"><datalist id="prodList"></datalist></div><div style="display:flex; gap:10px;"><div class="fld" style="flex:1;"><label>Кол-во</label><input id="iIngW" type="number" placeholder="500"></div><div class="fld" style="flex:1;"><label>Ед. изм.</label><select id="iIngU"><option>гр</option><option>шт</option></select></div></div><button class="btn btn-g btn-block" style="margin-bottom:10px;" onclick="window.addIngToList()">+ Добавить ингредиент в список</button><div id="dishIngs" style="font-size:13px; color:var(--dim); margin-bottom:15px;">Список пуст</div><button class="btn btn-p btn-block" onclick="window.saveDish()">Сохранить блюдо</button></div></div>
+<!-- МОДАЛКА БЛЮДА -->
+<div class="ov" id="mDish">
+  <div class="mod">
+    <div class="mod-head"><div class="mod-title" id="mDishTitle">Новое блюдо</div><button class="close" onclick="window.closeModals()">×</button></div>
+    <div class="fld"><label>Название блюда</label><input id="iDishName" placeholder="Котлеты"></div>
+    <div class="fld"><label>Ингредиент</label><input id="iIngName" placeholder="Фарш" list="prodList"><datalist id="prodList"></datalist></div>
+    <div style="display:flex; gap:10px;">
+      <div class="fld" style="flex:1;"><label>Кол-во</label><input id="iIngW" type="number" placeholder="500"></div>
+      <div class="fld" style="flex:1;"><label>Ед. изм.</label><select id="iIngU"><option>гр</option><option>шт</option></select></div>
+    </div>
+    <button class="btn btn-g btn-block" style="margin-bottom:10px;" onclick="window.addIngToList()">+ Добавить ингредиент в список</button>
+    <div id="dishIngs" style="font-size:13px; color:var(--dim); margin-bottom:15px;">Список пуст</div>
+    <button class="btn btn-p btn-block" onclick="window.saveDish()">Сохранить рецепт</button>
+  </div>
+</div>
 
 <div class="ov" id="mShop">
   <div class="mod">
@@ -369,7 +383,8 @@ let ghToken = localStorage.getItem('gh_token') || '';
 let parsedReceiptItems = [];
 let currentHistFilter = 'current_month'; 
 let editTxId = null;
-let editProdId = null; // Для редактирования товара
+let editProdId = null; 
+let editDishId = null; // Для редактирования блюда
 
 window.toast = msg => {
   const t = $('toast'); t.textContent = msg; t.classList.add('show');
@@ -567,7 +582,19 @@ function renderProds() {
 }
 
 function renderMenu() {
-  $('menuList').innerHTML = S.dishes.map(d => `<div class="card" style="margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;"><div><div style="font-weight:600;">${d.name}</div><div style="font-size:11px; color:var(--dim);">${d.ingredients.length} ингр.</div></div><button class="btn btn-g btn-sm" onclick="window.addToMenu('${d.id}')">+ В меню</button></div>`).join('') || '<div style="text-align:center; color:var(--dim);">Книга рецептов пуста</div>';
+  $('menuList').innerHTML = S.dishes.map(d => `
+    <div class="card" style="margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <div style="font-weight:600;">${d.name}</div>
+        <div style="font-size:11px; color:var(--dim);">${d.ingredients.length} ингр.</div>
+      </div>
+      <div style="display:flex; gap:6px;">
+        <button class="btn btn-g btn-sm" onclick="window.addToMenu('${d.id}')">+ В меню</button>
+        <button class="btn btn-g btn-sm" onclick="window.editDish('${d.id}')">✏️</button>
+        <button class="btn btn-d btn-sm" onclick="window.delDish('${d.id}')">✕</button>
+      </div>
+    </div>
+  `).join('') || '<div style="text-align:center; color:var(--dim);">Книга рецептов пуста</div>';
 }
 
 // ===================== ИСТОРИЯ =====================
@@ -712,6 +739,78 @@ window.delTx = (id) => {
   }
 };
 
+// ===================== РЕЦЕПТЫ (ПОВАРЕННАЯ КНИГА) =====================
+let currentIngs = [];
+
+window.openDish = () => {
+  editDishId = null;
+  $('mDishTitle').textContent = 'Новое блюдо';
+  $('iDishName').value = ''; $('iIngName').value = ''; $('iIngW').value = '';
+  currentIngs = []; renderDishIngs();
+  $('prodList').innerHTML = S.products.map(p => `<option value="${p.name}">`).join('');
+  window.openModal('mDish');
+};
+
+window.editDish = (id) => {
+  const d = S.dishes.find(x => x.id === id);
+  if(!d) return;
+  editDishId = id;
+  $('mDishTitle').textContent = 'Редактировать блюдо';
+  $('iDishName').value = d.name;
+  currentIngs = [...d.ingredients]; // Копируем массив
+  renderDishIngs();
+  $('prodList').innerHTML = S.products.map(p => `<option value="${p.name}">`).join('');
+  window.openModal('mDish');
+};
+
+window.delDish = (id) => {
+  if(confirm('Удалить рецепт из книги? Он также удалится из Меню на неделю.')) {
+    S.dishes = S.dishes.filter(x => x.id !== id);
+    // Удаляем блюдо из меню, если оно там было
+    for(let date in S.menu) {
+      if(S.menu[date] === id) delete S.menu[date];
+    }
+    saveToGitHub(); renderMenu(); toast('Рецепт удален');
+  }
+};
+
+window.addIngToList = () => {
+  const name = $('iIngName').value.trim(), weight = $('iIngW').value, unit = $('iIngU').value;
+  if(!name || !weight) return toast('Введите данные');
+  currentIngs.push({ name, weight, unit });
+  $('iIngName').value = ''; $('iIngW').value = '';
+  renderDishIngs();
+};
+
+function renderDishIngs() { 
+  $('dishIngs').innerHTML = currentIngs.map(i => `• ${i.name}: ${i.weight}${i.unit}`).join('<br>') || 'Список пуст'; 
+}
+
+window.saveDish = () => {
+  const name = $('iDishName').value.trim();
+  if(!name || currentIngs.length === 0) return toast('Заполните название и добавьте ингредиенты');
+  
+  if(editDishId) {
+    const d = S.dishes.find(x => x.id === editDishId);
+    if(d) {
+      d.name = name;
+      d.ingredients = [...currentIngs];
+    }
+    toast('Рецепт обновлен');
+  } else {
+    S.dishes.push({ id: uid(), name, ingredients: [...currentIngs] });
+    toast('Рецепт сохранен');
+  }
+  
+  saveToGitHub(); window.closeModals(); renderMenu(); 
+}
+
+window.addToMenu = (id) => { 
+  S.menu[id] = true; 
+  saveToGitHub(); 
+  toast('Добавлено в меню на неделю'); 
+};
+
 // ===================== СПРАВОЧНИК ТОВАРОВ =====================
 window.openProd = () => { 
   editProdId = null; 
@@ -784,13 +883,6 @@ window.openWishes = () => { $('iWishName').value = ''; renderWishes(); window.op
 window.addWish = () => { const n = $('iWishName').value.trim(); if(!n) return; S.wishes.push({ id: uid(), name: n }); $('iWishName').value = ''; saveToGitHub(); renderWishes(); };
 window.delWish = (id) => { S.wishes = S.wishes.filter(w => w.id !== id); saveToGitHub(); renderWishes(); };
 window.makeGoal = (id) => { const w = S.wishes.find(x => x.id === id); if(!w) return; window.closeModals(); window.openGoal(); $('iGoalName').value = w.name; S.wishes = S.wishes.filter(x => x.id !== id); saveToGitHub(); };
-
-let currentIngs = [];
-window.openDish = () => { $('iDishName').value = ''; $('iIngName').value = ''; $('iIngW').value = ''; currentIngs = []; renderDishIngs(); $('prodList').innerHTML = S.products.map(p => `<option value="${p.name}">`).join(''); window.openModal('mDish'); };
-window.addIngToList = () => { const name = $('iIngName').value.trim(), weight = $('iIngW').value, unit = $('iIngU').value; if(!name || !weight) return toast('Данные?'); currentIngs.push({ name, weight, unit }); $('iIngName').value = ''; $('iIngW').value = ''; renderDishIngs(); };
-function renderDishIngs() { $('dishIngs').innerHTML = currentIngs.map(i => `• ${i.name}: ${i.weight}${i.unit}`).join('<br>') || 'Пусто'; }
-window.saveDish = () => { const name = $('iDishName').value.trim(); if(!name || currentIngs.length === 0) return toast('Заполните'); S.dishes.push({ id: uid(), name, ingredients: currentIngs }); saveToGitHub(); window.closeModals(); renderMenu(); toast('Сохранено'); }
-window.addToMenu = (id) => { S.menu[id] = true; saveToGitHub(); toast('В меню'); };
 
 // ===================== СПИСОК ПОКУПОК =====================
 window.openShoppingList = () => { renderShopList(); window.openModal('mShop'); };
