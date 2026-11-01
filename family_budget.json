@@ -38,6 +38,14 @@
       "months": 2,
       "saved": 850000,
       "stars": 5
+    },
+    {
+      "id": "vjhdhuipb",
+      "name": "Автомобиль",
+      "target": 3000000,
+      "months": 10,
+      "saved": 0,
+      "stars": 3
     }
   ],
   "reserve": 0,
