@@ -66,12 +66,7 @@
   "menu": {
     "lulx5qqgm": true
   },
-  "shopList": [
-    {
-      "name": "Конфеты",
-      "bought": false
-    }
-  ],
+  "shopList": [],
   "events": [],
   "wishes": []
 }
