@@ -70,6 +70,10 @@
     {
       "name": "Фарш",
       "bought": false
+    },
+    {
+      "name": "Хлеб",
+      "bought": false
     }
   ],
   "events": [],
