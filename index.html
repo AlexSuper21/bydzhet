@@ -29,11 +29,15 @@
   ::-webkit-scrollbar-thumb { background: var(--surf2); border-radius: 4px; }
 
   /* ================= ЭКРАН ВХОДА ================= */
-  .login-screen { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .login-screen { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
   .login-title { font-size: 28px; font-weight: 800; margin-bottom: 10px; color: var(--txt); }
   .login-title span { color: var(--acc); }
-  .login-subtitle { font-size: 14px; color: var(--dim); margin-bottom: 40px; text-align: center; max-width: 300px; line-height: 1.5; }
-  .btn-enter { background: var(--acc); color: #fff; border: none; border-radius: 30px; padding: 18px 60px; font-size: 18px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 24px var(--acc-dim); transition: transform 0.2s, background 0.3s; }
+  .login-subtitle { font-size: 14px; color: var(--dim); margin-bottom: 30px; max-width: 350px; line-height: 1.5; }
+  
+  .login-input { width: 100%; max-width: 350px; padding: 16px; border-radius: 12px; border: 1px solid var(--brd); background: var(--surf2); color: var(--txt); font-size: 16px; margin-bottom: 20px; outline: none; text-align: center; }
+  .login-input:focus { border-color: var(--acc); }
+
+  .btn-enter { background: var(--acc); color: #fff; border: none; border-radius: 30px; padding: 18px 60px; font-size: 18px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 24px var(--acc-dim); transition: transform 0.2s, background 0.3s; width: 100%; max-width: 350px; }
   .btn-enter:active { transform: scale(0.95); }
   .btn-enter:disabled { background: var(--surf2); color: var(--dim); cursor: not-allowed; box-shadow: none; }
 
@@ -47,9 +51,6 @@
   .header-right { display: flex; align-items: center; gap: 8px; }
   .file-status { font-size: 11px; color: var(--suc); margin-right: 5px; display: none; background: rgba(48,209,88,0.1); padding: 4px 8px; border-radius: 10px;}
   
-  .icon-btn { background: var(--surf2); border: none; color: var(--txt); width: 34px; height: 34px; border-radius: 50%; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-  .icon-btn:hover { background: var(--brd); }
-
   .author-btn { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: var(--surf2); border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
   .author-btn:hover { background: var(--brd); }
   .avatar { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: bold; transition: background 0.3s; }
@@ -140,7 +141,8 @@
 
 <div class="login-screen" id="loginScreen">
   <div class="login-title">Семья<span>.</span>Бюджет</div>
-  <div class="login-subtitle">Нажмите «Войти», чтобы подключиться к файлу <b>family_budget.json</b> и синхронизировать ваши данные.</div>
+  <div class="login-subtitle">Введите ваш GitHub Токен для доступа к базе данных.</div>
+  <input type="password" id="inpToken" class="login-input" placeholder="github_pat_...">
   <button class="btn-enter" id="btnEnter">ВОЙТИ</button>
 </div>
 
@@ -148,11 +150,7 @@
   <header class="header">
     <div class="brand">Семья<span>.</span>Бюджет</div>
     <div class="header-right">
-      <div class="file-status" id="fileStatus">Синхронизировано</div>
-      <button class="icon-btn" id="btnExport" title="Скачать копию">📤</button>
-      <input type="file" id="importFile" accept=".json" style="display: none;">
-      <button class="icon-btn" id="btnImport" title="Загрузить копию">📥</button>
-
+      <div class="file-status" id="fileStatus">Облако: ОК</div>
       <div class="author-btn husband" id="authBtn">
         <span class="avatar" id="authAv">М</span>
         <span id="authNm">Муж</span>
@@ -271,169 +269,62 @@
 </div>
 
 <!-- МОДАЛКИ -->
+<div class="ov" id="mGoal"><div class="mod"><div class="mod-head"><div class="mod-title">Новая цель</div><button class="close" onclick="window.closeModals()">×</button></div><div class="fld"><label>Название</label><input id="iGoalName" placeholder="Например: Машина"></div><div class="fld"><label>Сумма (₽)</label><input id="iGoalSum" type="number" placeholder="1000000"></div><div class="fld"><label>Срок (мес.)</label><input id="iGoalMonths" type="number" placeholder="12"></div><button class="btn btn-p btn-block" onclick="window.saveGoal()">Создать</button></div></div>
 
-<!-- Цель -->
-<div class="ov" id="mGoal">
-  <div class="mod">
-    <div class="mod-head"><div class="mod-title">Новая цель</div><button class="close" onclick="window.closeModals()">×</button></div>
-    <div class="fld"><label>Название</label><input id="iGoalName" placeholder="Например: Машина"></div>
-    <div class="fld"><label>Сумма (₽)</label><input id="iGoalSum" type="number" placeholder="1000000"></div>
-    <div class="fld"><label>Срок (мес.)</label><input id="iGoalMonths" type="number" placeholder="12"></div>
-    <button class="btn btn-p btn-block" onclick="window.saveGoal()">Создать</button>
-  </div>
-</div>
+<div class="ov" id="mDeposit"><div class="mod"><div class="mod-head"><div class="mod-title" id="mDepTitle">Пополнение</div><button class="close" onclick="window.closeModals()">×</button></div><div class="fld"><label>Сумма (₽)</label><input id="iDepSum" type="number" placeholder="5000"></div><button class="btn btn-p btn-block" onclick="window.saveDeposit()">Внести</button></div></div>
 
-<!-- Пополнение -->
-<div class="ov" id="mDeposit">
-  <div class="mod">
-    <div class="mod-head"><div class="mod-title" id="mDepTitle">Пополнение</div><button class="close" onclick="window.closeModals()">×</button></div>
-    <div class="fld"><label>Сумма (₽)</label><input id="iDepSum" type="number" placeholder="5000"></div>
-    <button class="btn btn-p btn-block" onclick="window.saveDeposit()">Внести</button>
-  </div>
-</div>
-
-<!-- Операция (ИЗМЕНЕНА) -->
 <div class="ov" id="mTx">
   <div class="mod">
     <div class="mod-head"><div class="mod-title" id="mTxTitle">Операция</div><button class="close" onclick="window.closeModals()">×</button></div>
-    
-    <div class="fld">
-      <label>Тип</label>
-      <select id="iTxType">
-        <option value="expense">🔴 Расход</option>
-        <option value="income">🟢 Доход</option>
-      </select>
-    </div>
-    
+    <div class="fld"><label>Тип</label><select id="iTxType"><option value="expense">🔴 Расход</option><option value="income">🟢 Доход</option></select></div>
     <div class="fld"><label>Дата</label><input id="iTxDate" type="date"></div>
     <div class="fld"><label>Сумма (₽)</label><input id="iTxSum" type="number" placeholder="0"></div>
     <div class="fld"><label>Категория / Описание</label><input id="iTxCat" placeholder="Продукты"></div>
-    
     <button class="btn btn-p btn-block" onclick="window.saveTx()">Сохранить</button>
   </div>
 </div>
 
-<!-- ИСТОРИЯ -->
 <div class="ov" id="mHistory">
   <div class="mod">
     <div class="mod-head"><div class="mod-title">История операций</div><button class="close" onclick="window.closeModals()">×</button></div>
-    
     <div class="filter-chips">
       <div class="chip active" onclick="window.setHistFilter('current_month', this)">Текущий месяц</div>
       <div class="chip" onclick="window.setHistFilter('last_month', this)">Прошлый месяц</div>
       <div class="chip" onclick="window.setHistFilter('year', this)">Год</div>
       <div class="chip" onclick="window.setHistFilter('period', this)">Период</div>
     </div>
-
     <div id="customPeriodBox" style="display:none; gap:8px; margin-bottom:16px;">
       <input type="date" id="histStartDate" style="flex:1; padding:10px; border-radius:10px; border:1px solid var(--brd); background:var(--surf2); color:var(--txt);">
       <input type="date" id="histEndDate" style="flex:1; padding:10px; border-radius:10px; border:1px solid var(--brd); background:var(--surf2); color:var(--txt);">
       <button class="btn btn-p btn-sm" onclick="window.renderHistory()">ОК</button>
     </div>
-
-    <div id="histSummary" style="display:flex; justify-content:space-between; padding:12px; background:var(--surf2); border-radius:10px; margin-bottom:16px; font-weight:bold; font-size:14px;">
-      <!-- Заполняется в JS -->
-    </div>
-
+    <div id="histSummary" style="display:flex; justify-content:space-between; padding:12px; background:var(--surf2); border-radius:10px; margin-bottom:16px; font-weight:bold; font-size:14px;"></div>
     <div id="histList" style="max-height:50vh; overflow-y:auto;"></div>
   </div>
 </div>
 
-<!-- ВНЕСЕНИЕ ЧЕКА (РУЧНОЕ) -->
 <div class="ov" id="mReceiptScan">
   <div class="mod">
     <div class="mod-head"><div class="mod-title">Внести чек</div><button class="close" onclick="window.closeModals()">×</button></div>
-    
-    <div style="text-align:center; margin-bottom:16px;">
-      <input type="file" id="receiptFile" accept="image/*" style="display:none;" onchange="window.showReceiptImage(event)">
-      <button class="btn btn-g btn-block" onclick="document.getElementById('receiptFile').click()">📷 Прикрепить фото (для памяти)</button>
-      <img id="receiptImgPreview" style="max-height:150px; border-radius:10px; border:1px solid var(--brd); display:none; margin:10px auto 0;">
-    </div>
-
-    <div class="fld">
-      <label>Дата чека</label>
-      <input type="date" id="iReceiptDate">
-    </div>
-
+    <div class="fld"><label>Дата чека</label><input type="date" id="iReceiptDate"></div>
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
       <label style="font-size:12px; color:var(--dim); font-weight:600;">Товары в чеке</label>
       <button class="btn btn-g btn-sm" onclick="window.addEmptyReceiptRow()" style="padding:4px 8px; font-size:11px;">＋ Добавить</button>
     </div>
-    
-    <div id="parsedItemsList" style="margin-bottom:16px; max-height:30vh; overflow-y:auto; padding-right:4px;"></div>
-    
+    <div id="parsedItemsList" style="margin-bottom:16px; max-height:40vh; overflow-y:auto; padding-right:4px;"></div>
     <button class="btn btn-p btn-block" id="btnSaveReceipt" onclick="window.saveParsedReceipt()">Добавить в расходы</button>
   </div>
 </div>
 
-<!-- Товар -->
-<div class="ov" id="mProd">
-  <div class="mod">
-    <div class="mod-head"><div class="mod-title">Товар и Цена</div><button class="close" onclick="window.closeModals()">×</button></div>
-    <div class="fld"><label>Название</label><input id="iProdName" placeholder="Фарш"></div>
-    <div class="fld"><label>Магазин</label><input id="iProdStore" placeholder="Магнит"></div>
-    <div style="display:flex; gap:10px;">
-      <div class="fld" style="flex:1;"><label>Вес/Объем</label><input id="iProdW" type="number" placeholder="400"></div>
-      <div class="fld" style="flex:1;"><label>Цена (₽)</label><input id="iProdP" type="number" placeholder="130"></div>
-    </div>
-    <button class="btn btn-p btn-block" onclick="window.saveProd()">Сохранить</button>
-  </div>
-</div>
+<div class="ov" id="mProd"><div class="mod"><div class="mod-head"><div class="mod-title">Товар и Цена</div><button class="close" onclick="window.closeModals()">×</button></div><div class="fld"><label>Название</label><input id="iProdName" placeholder="Фарш"></div><div class="fld"><label>Магазин</label><input id="iProdStore" placeholder="Магнит"></div><div style="display:flex; gap:10px;"><div class="fld" style="flex:1;"><label>Вес/Объем</label><input id="iProdW" type="number" placeholder="400"></div><div class="fld" style="flex:1;"><label>Цена (₽)</label><input id="iProdP" type="number" placeholder="130"></div></div><button class="btn btn-p btn-block" onclick="window.saveProd()">Сохранить</button></div></div>
 
-<!-- Блюдо -->
-<div class="ov" id="mDish">
-  <div class="mod">
-    <div class="mod-head"><div class="mod-title">Новое блюдо</div><button class="close" onclick="window.closeModals()">×</button></div>
-    <div class="fld"><label>Название блюда</label><input id="iDishName" placeholder="Котлеты"></div>
-    <div class="fld"><label>Ингредиент</label><input id="iIngName" placeholder="Фарш" list="prodList"><datalist id="prodList"></datalist></div>
-    <div style="display:flex; gap:10px;">
-      <div class="fld" style="flex:1;"><label>Кол-во</label><input id="iIngW" type="number" placeholder="500"></div>
-      <div class="fld" style="flex:1;"><label>Ед. изм.</label><select id="iIngU"><option>гр</option><option>шт</option></select></div>
-    </div>
-    <button class="btn btn-g btn-block" style="margin-bottom:10px;" onclick="window.addIngToList()">+ Добавить ингредиент в список</button>
-    <div id="dishIngs" style="font-size:13px; color:var(--dim); margin-bottom:15px;">Список пуст</div>
-    <button class="btn btn-p btn-block" onclick="window.saveDish()">Сохранить блюдо</button>
-  </div>
-</div>
+<div class="ov" id="mDish"><div class="mod"><div class="mod-head"><div class="mod-title">Новое блюдо</div><button class="close" onclick="window.closeModals()">×</button></div><div class="fld"><label>Название блюда</label><input id="iDishName" placeholder="Котлеты"></div><div class="fld"><label>Ингредиент</label><input id="iIngName" placeholder="Фарш" list="prodList"><datalist id="prodList"></datalist></div><div style="display:flex; gap:10px;"><div class="fld" style="flex:1;"><label>Кол-во</label><input id="iIngW" type="number" placeholder="500"></div><div class="fld" style="flex:1;"><label>Ед. изм.</label><select id="iIngU"><option>гр</option><option>шт</option></select></div></div><button class="btn btn-g btn-block" style="margin-bottom:10px;" onclick="window.addIngToList()">+ Добавить ингредиент в список</button><div id="dishIngs" style="font-size:13px; color:var(--dim); margin-bottom:15px;">Список пуст</div><button class="btn btn-p btn-block" onclick="window.saveDish()">Сохранить блюдо</button></div></div>
 
-<!-- Список покупок -->
-<div class="ov" id="mShop">
-  <div class="mod">
-    <div class="mod-head"><div class="mod-title">Список покупок</div><button class="close" onclick="window.closeModals()">×</button></div>
-    <div style="display:flex; gap:8px; margin-bottom:16px;">
-      <input id="iManualShopItem" placeholder="Добавить вручную" style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--brd); background:var(--surf2); color:var(--txt); font-size:14px;">
-      <button class="btn btn-g" onclick="window.addManualShopItem()">＋</button>
-    </div>
-    <div id="shopList" style="margin-bottom:20px; max-height:40vh; overflow-y:auto;"></div>
-    <div style="display:flex; gap:8px;">
-      <button class="btn btn-g" style="flex:1;" onclick="window.genShopFromMenu()">🪄 Из меню</button>
-      <button class="btn btn-p" style="flex:1;" onclick="window.finishShopping()">✅ Завершить</button>
-    </div>
-  </div>
-</div>
+<div class="ov" id="mShop"><div class="mod"><div class="mod-head"><div class="mod-title">Список покупок</div><button class="close" onclick="window.closeModals()">×</button></div><div style="display:flex; gap:8px; margin-bottom:16px;"><input id="iManualShopItem" placeholder="Добавить вручную" style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--brd); background:var(--surf2); color:var(--txt); font-size:14px;"><button class="btn btn-g" onclick="window.addManualShopItem()">＋</button></div><div id="shopList" style="margin-bottom:20px; max-height:40vh; overflow-y:auto;"></div><div style="display:flex; gap:8px;"><button class="btn btn-g" style="flex:1;" onclick="window.genShopFromMenu()">🪄 Из меню</button><button class="btn btn-p" style="flex:1;" onclick="window.finishShopping()">✅ Завершить</button></div></div></div>
 
-<!-- События -->
-<div class="ov" id="mEvent">
-  <div class="mod">
-    <div class="mod-head"><div class="mod-title">Новое событие</div><button class="close" onclick="window.closeModals()">×</button></div>
-    <div class="fld"><label>Название</label><input id="iEvName" placeholder="День рождения"></div>
-    <div class="fld"><label>Дата</label><input id="iEvDate" type="date"></div>
-    <div class="fld"><label>Бюджет (₽)</label><input id="iEvBudget" type="number" placeholder="10000"></div>
-    <button class="btn btn-p btn-block" onclick="window.saveEvent()">Сохранить</button>
-  </div>
-</div>
+<div class="ov" id="mEvent"><div class="mod"><div class="mod-head"><div class="mod-title">Новое событие</div><button class="close" onclick="window.closeModals()">×</button></div><div class="fld"><label>Название</label><input id="iEvName" placeholder="День рождения"></div><div class="fld"><label>Дата</label><input id="iEvDate" type="date"></div><div class="fld"><label>Бюджет (₽)</label><input id="iEvBudget" type="number" placeholder="10000"></div><button class="btn btn-p btn-block" onclick="window.saveEvent()">Сохранить</button></div></div>
 
-<!-- Желания -->
-<div class="ov" id="mWishes">
-  <div class="mod">
-    <div class="mod-head"><div class="mod-title">Список желаний</div><button class="close" onclick="window.closeModals()">×</button></div>
-    <div style="display:flex; gap:8px; margin-bottom:16px;">
-      <input id="iWishName" placeholder="Чего хочется?" style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--brd); background:var(--surf2); color:var(--txt); font-size:14px;">
-      <button class="btn btn-g" onclick="window.addWish()">＋</button>
-    </div>
-    <div id="wishesList"></div>
-  </div>
-</div>
+<div class="ov" id="mWishes"><div class="mod"><div class="mod-head"><div class="mod-title">Список желаний</div><button class="close" onclick="window.closeModals()">×</button></div><div style="display:flex; gap:8px; margin-bottom:16px;"><input id="iWishName" placeholder="Чего хочется?" style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--brd); background:var(--surf2); color:var(--txt); font-size:14px;"><button class="btn btn-g" onclick="window.addWish()">＋</button></div><div id="wishesList"></div></div></div>
 
 <div class="toast" id="toast"></div>
 
@@ -442,14 +333,18 @@ const $ = id => document.getElementById(id);
 const fmt = n => new Intl.NumberFormat('ru-RU', {style:'currency', currency:'RUB', maximumFractionDigits:0}).format(n || 0);
 const uid = () => Math.random().toString(36).substr(2, 9);
 
-let S = {
-  author: 'husband', txs: [], goals: [], reserve: 0, products: [], prices: [], dishes: [], menu: {}, shopList: [], events: [], wishes: []
-};
+// GitHub Настройки
+const GITHUB_USER = 'AlexSuper21';
+const GITHUB_REPO = 'bydzhet';
+const GITHUB_FILE = 'family_budget.json';
 
-let fileHandle = null;
+let S = { author: 'husband', txs: [], goals: [], reserve: 0, products: [], prices: [], dishes: [], menu: {}, shopList: [], events: [], wishes: [] };
+let currentSha = null;
+let ghToken = localStorage.getItem('gh_token') || '';
+
 let parsedReceiptItems = [];
 let currentHistFilter = 'current_month'; 
-let editTxId = null; // Переменная для отслеживания редактирования
+let editTxId = null;
 
 window.toast = msg => {
   const t = $('toast'); t.textContent = msg; t.classList.add('show');
@@ -470,104 +365,103 @@ function updateThemeColor() {
   document.documentElement.style.setProperty('--acc-dim', dimColor);
 }
 
-// ===================== ФАЙЛЫ =====================
-const dbPromise = new Promise((resolve, reject) => {
-  const req = indexedDB.open('FamilyBudgetDB', 1);
-  req.onupgradeneeded = e => e.target.result.createObjectStore('handles');
-  req.onsuccess = e => resolve(e.target.result);
-  req.onerror = e => reject(e.target.error);
-});
-
-async function saveHandleToIDB(handle) {
-  const db = await dbPromise;
-  const tx = db.transaction('handles', 'readwrite');
-  tx.objectStore('handles').put(handle, 'budgetFile');
+// ===================== GITHUB API (ОБЛАКО) =====================
+async function loadFromGitHub() {
+  const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}?t=${Date.now()}`;
+  const res = await fetch(url, { headers: { 'Authorization': `token ${ghToken}` } });
+  
+  if (!res.ok) {
+    if(res.status === 404) return true;
+    throw new Error('Ошибка загрузки');
+  }
+  
+  const data = await res.json();
+  currentSha = data.sha;
+  
+  const content = decodeURIComponent(escape(atob(data.content)));
+  if (content.trim()) {
+    const parsed = JSON.parse(content);
+    S = Object.assign(S, parsed);
+  }
+  return true;
 }
 
-async function getHandleFromIDB() {
-  const db = await dbPromise;
-  return new Promise((resolve) => {
-    const tx = db.transaction('handles', 'readonly');
-    const req = tx.objectStore('handles').get('budgetFile');
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => resolve(null);
-  });
-}
+async function saveToGitHub() {
+  if (!ghToken) return;
+  $('fileStatus').textContent = 'Синхронизация...';
+  
+  const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(S, null, 2))));
+  const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+  
+  const body = {
+    message: `Update budget data ${new Date().toISOString()}`,
+    content: contentBase64,
+    sha: currentSha || undefined
+  };
 
-async function save() {
-  if (!fileHandle) return;
   try {
-    const perm = await fileHandle.queryPermission({ mode: 'readwrite' });
-    if (perm !== 'granted') {
-      const req = await fileHandle.requestPermission({ mode: 'readwrite' });
-      if (req !== 'granted') return;
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: { 'Authorization': `token ${ghToken}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      currentSha = data.content.sha;
+      $('fileStatus').textContent = '✅ В облаке';
+      $('fileStatus').style.color = 'var(--suc)';
+    } else {
+      throw new Error('Ошибка сохранения');
     }
-    const writable = await fileHandle.createWritable();
-    await writable.write(JSON.stringify(S, null, 2));
-    await writable.close();
-    $('fileStatus').textContent = '✅ Синхронизировано';
-  } catch (err) { console.error(err); }
+  } catch (err) {
+    console.error(err);
+    $('fileStatus').textContent = '⚠️ Ошибка сети';
+    $('fileStatus').style.color = 'var(--dng)';
+  }
 }
 
+// ===================== ВХОД =====================
 $('btnEnter').onclick = async () => {
+  const token = $('inpToken').value.trim();
+  if(!token) return toast('Введите токен');
+  
   $('btnEnter').textContent = 'ЗАГРУЗКА...';
   $('btnEnter').disabled = true;
+  
+  ghToken = token;
+  localStorage.setItem('gh_token', ghToken);
+  
   try {
-    let handle = await getHandleFromIDB();
-    if (handle) {
-      const perm = await handle.queryPermission({ mode: 'readwrite' });
-      if (perm === 'granted') fileHandle = handle;
-      else {
-        const req = await handle.requestPermission({ mode: 'readwrite' });
-        if (req === 'granted') fileHandle = handle;
-      }
-    }
-    if (!fileHandle) {
-      if (!window.showOpenFilePicker) {
-        alert('Браузер устарел. Используйте Chrome или Edge. Работаем без файла.');
-        $('loginScreen').style.display = 'none';
-        $('appContainer').style.display = 'block';
-        renderAll(); return;
-      }
-      const [selectedHandle] = await window.showOpenFilePicker({
-        types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
-        multiple: false
-      });
-      fileHandle = selectedHandle;
-      await saveHandleToIDB(fileHandle);
-    }
-    const file = await fileHandle.getFile();
-    const text = await file.text();
-    if (text.trim()) {
-      try {
-        const parsed = JSON.parse(text);
-        if (parsed.txs) S = Object.assign(S, parsed);
-      } catch(e) {}
-    }
+    await loadFromGitHub();
     $('loginScreen').style.display = 'none';
     $('appContainer').style.display = 'block';
     $('fileStatus').style.display = 'block';
     updateThemeColor(); 
     renderAll();
-    toast('Данные синхронизированы');
+    toast('Данные загружены из облака!');
   } catch (err) {
-    if (err.name !== 'AbortError') alert('Ошибка');
+    alert('Ошибка доступа к GitHub. Проверьте токен и интернет.');
     $('btnEnter').textContent = 'ВОЙТИ';
     $('btnEnter').disabled = false;
   }
 };
 
+// Попытка авто-входа если токен уже сохранен
+if(ghToken) {
+  $('inpToken').value = ghToken;
+  $('btnEnter').click();
+}
+
 // ===================== РЕНДЕР =====================
 function renderDashboard() {
   let inc = S.txs.filter(t => t.type === 'income').reduce((a, b) => a + b.sum, 0);
   let exp = S.txs.filter(t => t.type === 'expense').reduce((a, b) => a + b.sum, 0);
-  
   $('totalIncome').textContent = fmt(inc);
   $('totalExpense').textContent = fmt(exp);
 
   const totalSavedInGoals = S.goals.reduce((a, g) => a + g.saved, 0);
   const freeMoney = inc - exp - totalSavedInGoals - S.reserve;
-  
   const freeEl = $('freeMoneyVal');
   freeEl.textContent = fmt(freeMoney);
   freeEl.className = 'free-val ' + (freeMoney < 0 ? 'negative' : 'positive');
@@ -575,17 +469,13 @@ function renderDashboard() {
   const now = new Date();
   const monthStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2, '0')}`;
   $('currentMonthName').textContent = now.toLocaleString('ru', {month: 'long'});
-  
   let mInc = S.txs.filter(t => t.type === 'income' && t.date.startsWith(monthStr)).reduce((a, b) => a + b.sum, 0);
   let mExp = S.txs.filter(t => t.type === 'expense' && t.date.startsWith(monthStr)).reduce((a, b) => a + b.sum, 0);
-  
   $('monthIncome').textContent = fmt(mInc);
   $('monthExpense').textContent = fmt(mExp);
-  
   let savings = mInc - mExp;
   $('monthSavings').textContent = `Сэкономлено: ${fmt(savings > 0 ? savings : 0)}`;
   $('monthProg').style.width = (mInc > 0 ? Math.min(100, Math.round((savings / mInc) * 100)) : 0) + '%';
-
   $('reserveTxt').textContent = fmt(S.reserve);
 
   $('dashboardGoals').innerHTML = S.goals.slice(0, 2).map(g => {
@@ -594,52 +484,25 @@ function renderDashboard() {
   }).join('') || '<div style="color:var(--dim); font-size:13px; margin-bottom:16px;">Нет целей</div>';
 
   const sortedEvents = [...S.events].sort((a,b) => new Date(a.date) - new Date(b.date));
-  $('eventsList').innerHTML = sortedEvents.map(e => `
-    <div class="row"><div class="row-left"><div class="icon-box">🎉</div><div><div style="font-weight:600; font-size:14px;">${e.name}</div><div style="font-size:11px; color:var(--dim);">${new Date(e.date).toLocaleDateString('ru-RU')}</div></div></div><div style="text-align:right;"><div style="font-weight:700; color:var(--acc); font-size:13px;">${fmt(e.budget)}</div><button class="btn btn-d btn-sm" style="padding:2px 6px; margin-top:4px;" onclick="window.delEvent('${e.id}')">✕</button></div></div>
-  `).join('') || '<div style="text-align:center; color:var(--dim); font-size:13px; padding:10px;">Нет событий</div>';
+  $('eventsList').innerHTML = sortedEvents.map(e => `<div class="row"><div class="row-left"><div class="icon-box">🎉</div><div><div style="font-weight:600; font-size:14px;">${e.name}</div><div style="font-size:11px; color:var(--dim);">${new Date(e.date).toLocaleDateString('ru-RU')}</div></div></div><div style="text-align:right;"><div style="font-weight:700; color:var(--acc); font-size:13px;">${fmt(e.budget)}</div><button class="btn btn-d btn-sm" style="padding:2px 6px; margin-top:4px;" onclick="window.delEvent('${e.id}')">✕</button></div></div>`).join('') || '<div style="text-align:center; color:var(--dim); font-size:13px; padding:10px;">Нет событий</div>';
 }
 
 function renderTx() {
-  $('txList').innerHTML = S.txs.slice().reverse().map(t => `
-    <div class="row">
-      <div class="row-left">
-        <div class="icon-box" style="color:${t.type==='income'?'var(--suc)':'var(--dng)'}">${t.type==='income'?'+':'-'}</div>
-        <div>
-          <div style="font-weight:600; font-size:14px;">${t.cat}</div>
-          <div style="font-size:11px; color:var(--dim);">${t.date}</div>
-        </div>
-      </div>
-      <div style="display:flex; align-items:center; gap:8px;">
-        <span style="font-weight:700; color:${t.type==='income'?'var(--suc)':'var(--txt)'}">${fmt(t.sum)}</span>
-        <button class="btn btn-g btn-sm" onclick="window.editTx('${t.id}')">✏️</button>
-        <button class="btn btn-d btn-sm" onclick="window.delTx('${t.id}')">✕</button>
-      </div>
-    </div>
-  `).join('') || '<div style="text-align:center; color:var(--dim); padding:20px;">Нет операций</div>';
+  $('txList').innerHTML = S.txs.slice().reverse().map(t => `<div class="row"><div class="row-left"><div class="icon-box" style="color:${t.type==='income'?'var(--suc)':'var(--dng)'}">${t.type==='income'?'+':'-'}</div><div><div style="font-weight:600; font-size:14px;">${t.cat}</div><div style="font-size:11px; color:var(--dim);">${t.date}</div></div></div><div style="display:flex; align-items:center; gap:8px;"><span style="font-weight:700; color:${t.type==='income'?'var(--suc)':'var(--txt)'}">${fmt(t.sum)}</span><button class="btn btn-g btn-sm" onclick="window.editTx('${t.id}')">✏️</button><button class="btn btn-d btn-sm" onclick="window.delTx('${t.id}')">✕</button></div></div>`).join('') || '<div style="text-align:center; color:var(--dim); padding:20px;">Нет операций</div>';
 }
 
 function renderGoals() {
   $('goalsList').innerHTML = S.goals.map(g => {
-    const remaining = g.target - g.saved;
-    const monthly = g.months > 0 ? Math.ceil(remaining / g.months) : remaining;
+    const monthly = g.months > 0 ? Math.ceil((g.target - g.saved) / g.months) : 0;
     const pct = Math.min(100, Math.round((g.saved / g.target) * 100));
     let stars = '';
     for(let i=1; i<=5; i++) stars += `<span class="star ${i <= g.stars ? 'on' : ''}" onclick="window.setStar('${g.id}', ${i})">★</span>`;
-    return `
-      <div class="card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;"><div style="font-weight:700; font-size:15px;">${g.name}</div><div class="stars">${stars}</div></div>
-        <div class="prog"><div class="prog-fill" style="width:${pct}%"></div></div>
-        <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--dim); margin-bottom:12px;"><span>Накоплено: ${fmt(g.saved)} из ${fmt(g.target)}</span><span>${pct}%</span></div>
-        <div style="background:var(--acc-dim); padding:10px; border-radius:8px; margin-bottom:12px; font-size:12px; color:var(--acc); display:flex; justify-content:space-between;"><span>Откладывать в месяц:</span><b>${fmt(monthly)}</b></div>
-        <div style="display:flex; gap:8px;"><button class="btn btn-p btn-sm" style="flex:1;" onclick="window.openDeposit('goal', '${g.id}')">+ Внести</button><button class="btn btn-d btn-sm" onclick="window.delGoal('${g.id}')">✕</button></div>
-      </div>`;
+    return `<div class="card"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;"><div style="font-weight:700; font-size:15px;">${g.name}</div><div class="stars">${stars}</div></div><div class="prog"><div class="prog-fill" style="width:${pct}%"></div></div><div style="display:flex; justify-content:space-between; font-size:12px; color:var(--dim); margin-bottom:12px;"><span>Накоплено: ${fmt(g.saved)} из ${fmt(g.target)}</span><span>${pct}%</span></div><div style="background:var(--acc-dim); padding:10px; border-radius:8px; margin-bottom:12px; font-size:12px; color:var(--acc); display:flex; justify-content:space-between;"><span>Откладывать в месяц:</span><b>${fmt(monthly)}</b></div><div style="display:flex; gap:8px;"><button class="btn btn-p btn-sm" style="flex:1;" onclick="window.openDeposit('goal', '${g.id}')">+ Внести</button><button class="btn btn-d btn-sm" onclick="window.delGoal('${g.id}')">✕</button></div></div>`;
   }).join('') || '<div style="text-align:center; color:var(--dim); padding:20px;">Нет активных целей</div>';
 }
 
 function renderWishes() {
-  $('wishesList').innerHTML = S.wishes.map(w => `
-    <div class="row"><div class="row-left"><div class="icon-box">✨</div><div style="font-weight:600; font-size:14px;">${w.name}</div></div><div style="display:flex; gap:6px;"><button class="btn btn-p btn-sm" onclick="window.makeGoal('${w.id}')">🎯 В цели</button><button class="btn btn-d btn-sm" onclick="window.delWish('${w.id}')">✕</button></div></div>
-  `).join('') || '<div style="text-align:center; color:var(--dim); padding:20px;">Список пуст</div>';
+  $('wishesList').innerHTML = S.wishes.map(w => `<div class="row"><div class="row-left"><div class="icon-box">✨</div><div style="font-weight:600; font-size:14px;">${w.name}</div></div><div style="display:flex; gap:6px;"><button class="btn btn-p btn-sm" onclick="window.makeGoal('${w.id}')">🎯 В цели</button><button class="btn btn-d btn-sm" onclick="window.delWish('${w.id}')">✕</button></div></div>`).join('') || '<div style="text-align:center; color:var(--dim); padding:20px;">Список пуст</div>';
 }
 
 function renderProds() {
@@ -652,12 +515,10 @@ function renderProds() {
 }
 
 function renderMenu() {
-  $('menuList').innerHTML = S.dishes.map(d => `
-    <div class="card" style="margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;"><div><div style="font-weight:600;">${d.name}</div><div style="font-size:11px; color:var(--dim);">${d.ingredients.length} ингр.</div></div><button class="btn btn-g btn-sm" onclick="window.addToMenu('${d.id}')">+ В меню</button></div>
-  `).join('') || '<div style="text-align:center; color:var(--dim);">Книга рецептов пуста</div>';
+  $('menuList').innerHTML = S.dishes.map(d => `<div class="card" style="margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;"><div><div style="font-weight:600;">${d.name}</div><div style="font-size:11px; color:var(--dim);">${d.ingredients.length} ингр.</div></div><button class="btn btn-g btn-sm" onclick="window.addToMenu('${d.id}')">+ В меню</button></div>`).join('') || '<div style="text-align:center; color:var(--dim);">Книга рецептов пуста</div>';
 }
 
-// ===================== ИСТОРИЯ И ФИЛЬТРЫ =====================
+// ===================== ИСТОРИЯ =====================
 window.openHistory = () => {
   currentHistFilter = 'current_month';
   document.querySelectorAll('.filter-chips .chip').forEach((c, i) => c.classList.toggle('active', i === 0));
@@ -670,12 +531,10 @@ window.setHistFilter = (type, btn) => {
   currentHistFilter = type;
   document.querySelectorAll('.filter-chips .chip').forEach(c => c.classList.remove('active'));
   btn.classList.add('active');
-  
   if(type === 'period') {
     $('customPeriodBox').style.display = 'flex';
     const now = new Date();
-    const start = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().slice(0,10);
-    $('histStartDate').value = start;
+    $('histStartDate').value = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().slice(0,10);
     $('histEndDate').value = now.toISOString().slice(0,10);
   } else {
     $('customPeriodBox').style.display = 'none';
@@ -689,72 +548,36 @@ window.renderHistory = () => {
   const pad = (n) => String(n).padStart(2, '0');
 
   if(currentHistFilter === 'current_month') {
-    const mStr = `${now.getFullYear()}-${pad(now.getMonth()+1)}`;
-    filteredTxs = S.txs.filter(t => t.date.startsWith(mStr));
+    filteredTxs = S.txs.filter(t => t.date.startsWith(`${now.getFullYear()}-${pad(now.getMonth()+1)}`));
   } 
   else if(currentHistFilter === 'last_month') {
     const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-    const mStr = `${lastMonth.getFullYear()}-${pad(lastMonth.getMonth()+1)}`;
-    filteredTxs = S.txs.filter(t => t.date.startsWith(mStr));
+    filteredTxs = S.txs.filter(t => t.date.startsWith(`${lastMonth.getFullYear()}-${pad(lastMonth.getMonth()+1)}`));
   }
   else if(currentHistFilter === 'year') {
-    const yStr = String(now.getFullYear());
-    filteredTxs = S.txs.filter(t => t.date.startsWith(yStr));
+    filteredTxs = S.txs.filter(t => t.date.startsWith(String(now.getFullYear())));
   }
   else if(currentHistFilter === 'period') {
     const start = $('histStartDate').value;
     const end = $('histEndDate').value;
-    if(start && end) {
-      filteredTxs = S.txs.filter(t => t.date >= start && t.date <= end);
-    }
+    if(start && end) filteredTxs = S.txs.filter(t => t.date >= start && t.date <= end);
   }
 
   const inc = filteredTxs.filter(t => t.type === 'income').reduce((a, b) => a + b.sum, 0);
   const exp = filteredTxs.filter(t => t.type === 'expense').reduce((a, b) => a + b.sum, 0);
-  
-  $('histSummary').innerHTML = `
-    <div style="color:var(--suc)">+ ${fmt(inc)}</div>
-    <div style="color:var(--dng)">- ${fmt(exp)}</div>
-    <div style="color:var(--txt)">${fmt(inc - exp)}</div>
-  `;
+  $('histSummary').innerHTML = `<div style="color:var(--suc)">+ ${fmt(inc)}</div><div style="color:var(--dng)">- ${fmt(exp)}</div><div style="color:var(--txt)">${fmt(inc - exp)}</div>`;
 
   filteredTxs.sort((a,b) => new Date(b.date) - new Date(a.date)); 
-  
-  $('histList').innerHTML = filteredTxs.map(t => `
-    <div class="row">
-      <div class="row-left">
-        <div class="icon-box" style="color:${t.type==='income'?'var(--suc)':'var(--dng)'}">${t.type==='income'?'+':'-'}</div>
-        <div>
-          <div style="font-weight:600; font-size:14px;">${t.cat}</div>
-          <div style="font-size:11px; color:var(--dim);">${new Date(t.date).toLocaleDateString('ru-RU')}</div>
-        </div>
-      </div>
-      <div style="display:flex; align-items:center; gap:8px;">
-        <span style="font-weight:700; color:${t.type==='income'?'var(--suc)':'var(--txt)'}">${fmt(t.sum)}</span>
-        <button class="btn btn-g btn-sm" onclick="window.editTx('${t.id}')">✏️</button>
-        <button class="btn btn-d btn-sm" onclick="window.delTx('${t.id}')">✕</button>
-      </div>
-    </div>
-  `).join('') || '<div style="text-align:center; color:var(--dim); padding:20px;">В этом периоде нет операций</div>';
+  $('histList').innerHTML = filteredTxs.map(t => `<div class="row"><div class="row-left"><div class="icon-box" style="color:${t.type==='income'?'var(--suc)':'var(--dng)'}">${t.type==='income'?'+':'-'}</div><div><div style="font-weight:600; font-size:14px;">${t.cat}</div><div style="font-size:11px; color:var(--dim);">${new Date(t.date).toLocaleDateString('ru-RU')}</div></div></div><div style="display:flex; align-items:center; gap:8px;"><span style="font-weight:700; color:${t.type==='income'?'var(--suc)':'var(--txt)'}">${fmt(t.sum)}</span><button class="btn btn-g btn-sm" onclick="window.editTx('${t.id}')">✏️</button><button class="btn btn-d btn-sm" onclick="window.delTx('${t.id}')">✕</button></div></div>`).join('') || '<div style="text-align:center; color:var(--dim); padding:20px;">В этом периоде нет операций</div>';
 };
 
 // ===================== РУЧНОЙ ЧЕК =====================
 window.openReceiptScanner = () => {
-  $('receiptImgPreview').style.display = 'none';
   $('parsedItemsList').innerHTML = '';
   parsedReceiptItems = [];
   $('iReceiptDate').value = new Date().toISOString().slice(0,10);
-  
   window.addEmptyReceiptRow();
   window.openModal('mReceiptScan');
-};
-
-window.showReceiptImage = (event) => {
-  const file = event.target.files[0];
-  if(!file) return;
-  const imgUrl = URL.createObjectURL(file);
-  $('receiptImgPreview').src = imgUrl;
-  $('receiptImgPreview').style.display = 'block';
 };
 
 window.addEmptyReceiptRow = () => {
@@ -784,36 +607,23 @@ function renderParsedItems() {
 
 window.saveParsedReceipt = () => {
   const selectedItems = parsedReceiptItems.filter(x => x.selected && x.name && x.price > 0);
-  if(selectedItems.length === 0) return toast('Выберите хотя бы один товар и укажите цену');
-  
+  if(selectedItems.length === 0) return toast('Выберите товар и укажите цену');
   const receiptDate = $('iReceiptDate').value || new Date().toISOString().slice(0,10);
   let total = 0;
-  
   selectedItems.forEach(item => {
-    S.txs.push({ 
-      id: uid(), 
-      type: 'expense', 
-      sum: item.price, 
-      cat: item.name, 
-      date: receiptDate
-    });
+    S.txs.push({ id: uid(), type: 'expense', sum: item.price, cat: item.name, date: receiptDate });
     total += item.price;
   });
-  
-  save(); 
-  window.closeModals(); 
-  renderAll(); 
-  toast(`Добавлено ${selectedItems.length} позиций на ${fmt(total)}`);
+  saveToGitHub(); window.closeModals(); renderAll(); toast(`Добавлено на ${fmt(total)}`);
 };
 
-// ===================== ОПЕРАЦИИ (ДОБАВЛЕНО РЕДАКТИРОВАНИЕ) =====================
+// ===================== ОПЕРАЦИИ =====================
 window.openTx = (type) => {
-  editTxId = null; // Сбрасываем режим редактирования
+  editTxId = null;
   $('mTxTitle').textContent = type === 'income' ? 'Новый доход' : 'Новый расход';
   $('iTxType').value = type;
   $('iTxDate').value = new Date().toISOString().slice(0,10);
-  $('iTxSum').value = ''; 
-  $('iTxCat').value = '';
+  $('iTxSum').value = ''; $('iTxCat').value = '';
   window.openModal('mTx');
 };
 
@@ -830,185 +640,74 @@ window.editTx = (id) => {
 };
 
 window.saveTx = () => {
-  const type = $('iTxType').value;
-  const date = $('iTxDate').value;
-  const sum = parseFloat($('iTxSum').value);
-  const cat = $('iTxCat').value.trim();
-  
+  const type = $('iTxType').value, date = $('iTxDate').value, sum = parseFloat($('iTxSum').value), cat = $('iTxCat').value.trim();
   if(!sum || !cat || !date) return toast('Заполните все поля');
   
   if(editTxId) {
     const t = S.txs.find(x => x.id === editTxId);
-    if(t) {
-      t.type = type;
-      t.date = date;
-      t.sum = sum;
-      t.cat = cat;
-    }
-    toast('Операция обновлена');
+    if(t) { t.type = type; t.date = date; t.sum = sum; t.cat = cat; }
+    toast('Обновлено');
   } else {
     S.txs.push({ id: uid(), type, date, sum, cat });
-    toast('Операция добавлена');
+    toast('Добавлено');
   }
-  
-  save(); 
-  window.closeModals(); 
-  renderAll(); 
-  if($('mHistory').classList.contains('active')) window.renderHistory();
+  saveToGitHub(); window.closeModals(); renderAll(); if($('mHistory').classList.contains('active')) window.renderHistory();
 };
 
 window.delTx = (id) => {
   if(confirm('Удалить операцию?')) { 
-    S.txs = S.txs.filter(t => t.id !== id); 
-    save(); 
-    renderAll(); 
-    if($('mHistory').classList.contains('active')) window.renderHistory();
+    S.txs = S.txs.filter(t => t.id !== id); saveToGitHub(); renderAll(); if($('mHistory').classList.contains('active')) window.renderHistory();
   }
 };
 
+// ОСТАЛЬНЫЕ ФУНКЦИИ
 window.openGoal = () => { $('iGoalName').value = ''; $('iGoalSum').value = ''; $('iGoalMonths').value = ''; window.openModal('mGoal'); };
-window.saveGoal = () => {
-  const n = $('iGoalName').value.trim(), s = parseFloat($('iGoalSum').value), m = parseInt($('iGoalMonths').value);
-  if(!n || !s || !m) return toast('Заполните все поля');
-  S.goals.push({ id: uid(), name: n, target: s, months: m, saved: 0, stars: 3 });
-  save(); window.closeModals(); renderAll(); toast('Цель создана');
-}
-window.delGoal = (id) => { if(confirm('Удалить?')) { S.goals = S.goals.filter(x => x.id !== id); save(); renderAll(); } };
-window.setStar = (id, num) => { const g = S.goals.find(x => x.id === id); if(g) { g.stars = num; save(); renderGoals(); } };
+window.saveGoal = () => { const n = $('iGoalName').value.trim(), s = parseFloat($('iGoalSum').value), m = parseInt($('iGoalMonths').value); if(!n || !s || !m) return toast('Заполните поля'); S.goals.push({ id: uid(), name: n, target: s, months: m, saved: 0, stars: 3 }); saveToGitHub(); window.closeModals(); renderAll(); toast('Цель создана'); }
+window.delGoal = (id) => { if(confirm('Удалить?')) { S.goals = S.goals.filter(x => x.id !== id); saveToGitHub(); renderAll(); } };
+window.setStar = (id, num) => { const g = S.goals.find(x => x.id === id); if(g) { g.stars = num; saveToGitHub(); renderGoals(); } };
 
 let depTarget = { type: null, id: null };
-window.openDeposit = (type, id = null) => {
-  depTarget = { type, id };
-  $('mDepTitle').textContent = type === 'reserve' ? 'Пополнить Резерв' : 'Пополнить Цель';
-  $('iDepSum').value = ''; window.openModal('mDeposit');
-};
-window.saveDeposit = () => {
-  const v = parseFloat($('iDepSum').value);
-  if(!v || v <= 0) return toast('Введите сумму');
-  if(depTarget.type === 'reserve') S.reserve += v;
-  else { const g = S.goals.find(x => x.id === depTarget.id); if(g) g.saved += v; }
-  save(); window.closeModals(); renderAll(); toast('Внесено');
-}
+window.openDeposit = (type, id = null) => { depTarget = { type, id }; $('mDepTitle').textContent = type === 'reserve' ? 'В Резерв' : 'В Цель'; $('iDepSum').value = ''; window.openModal('mDeposit'); };
+window.saveDeposit = () => { const v = parseFloat($('iDepSum').value); if(!v || v <= 0) return toast('Сумма?'); if(depTarget.type === 'reserve') S.reserve += v; else { const g = S.goals.find(x => x.id === depTarget.id); if(g) g.saved += v; } saveToGitHub(); window.closeModals(); renderAll(); toast('Внесено'); }
 
 window.openEvent = () => { $('iEvName').value = ''; $('iEvDate').value = ''; $('iEvBudget').value = ''; window.openModal('mEvent'); };
-window.saveEvent = () => {
-  const n = $('iEvName').value.trim(), d = $('iEvDate').value, b = parseFloat($('iEvBudget').value);
-  if(!n || !d || isNaN(b)) return toast('Заполните все поля');
-  S.events.push({ id: uid(), name: n, date: d, budget: b });
-  save(); window.closeModals(); renderDashboard(); toast('Событие добавлено');
-};
-window.delEvent = (id) => { if(confirm('Удалить?')) { S.events = S.events.filter(e => e.id !== id); save(); renderDashboard(); } };
+window.saveEvent = () => { const n = $('iEvName').value.trim(), d = $('iEvDate').value, b = parseFloat($('iEvBudget').value); if(!n || !d || isNaN(b)) return toast('Заполните'); S.events.push({ id: uid(), name: n, date: d, budget: b }); saveToGitHub(); window.closeModals(); renderDashboard(); toast('Сохранено'); };
+window.delEvent = (id) => { if(confirm('Удалить?')) { S.events = S.events.filter(e => e.id !== id); saveToGitHub(); renderDashboard(); } };
 
 window.openWishes = () => { $('iWishName').value = ''; renderWishes(); window.openModal('mWishes'); };
-window.addWish = () => {
-  const n = $('iWishName').value.trim(); if(!n) return;
-  S.wishes.push({ id: uid(), name: n }); $('iWishName').value = ''; save(); renderWishes();
-};
-window.delWish = (id) => { S.wishes = S.wishes.filter(w => w.id !== id); save(); renderWishes(); };
-window.makeGoal = (id) => {
-  const w = S.wishes.find(x => x.id === id); if(!w) return;
-  window.closeModals(); window.openGoal(); $('iGoalName').value = w.name;
-  S.wishes = S.wishes.filter(x => x.id !== id); save();
-};
+window.addWish = () => { const n = $('iWishName').value.trim(); if(!n) return; S.wishes.push({ id: uid(), name: n }); $('iWishName').value = ''; saveToGitHub(); renderWishes(); };
+window.delWish = (id) => { S.wishes = S.wishes.filter(w => w.id !== id); saveToGitHub(); renderWishes(); };
+window.makeGoal = (id) => { const w = S.wishes.find(x => x.id === id); if(!w) return; window.closeModals(); window.openGoal(); $('iGoalName').value = w.name; S.wishes = S.wishes.filter(x => x.id !== id); saveToGitHub(); };
 
 window.openProd = () => { $('iProdName').value = ''; $('iProdStore').value = ''; $('iProdW').value = ''; $('iProdP').value = ''; window.openModal('mProd'); };
-window.saveProd = () => {
-  const n = $('iProdName').value.trim(), s = $('iProdStore').value.trim(), w = parseFloat($('iProdW').value), p = parseFloat($('iProdP').value);
-  if(!n || !s || !w || !p) return toast('Заполните все поля');
-  let prod = S.products.find(x => x.name.toLowerCase() === n.toLowerCase());
-  if(!prod) { prod = { id: uid(), name: n }; S.products.push(prod); }
-  S.prices.push({ id: uid(), prodId: prod.id, store: s, weight: w, price: p, date: new Date().toISOString().slice(0,10) });
-  save(); window.closeModals(); renderAll(); toast('Товар добавлен');
-}
+window.saveProd = () => { const n = $('iProdName').value.trim(), s = $('iProdStore').value.trim(), w = parseFloat($('iProdW').value), p = parseFloat($('iProdP').value); if(!n || !s || !w || !p) return toast('Заполните'); let prod = S.products.find(x => x.name.toLowerCase() === n.toLowerCase()); if(!prod) { prod = { id: uid(), name: n }; S.products.push(prod); } S.prices.push({ id: uid(), prodId: prod.id, store: s, weight: w, price: p, date: new Date().toISOString().slice(0,10) }); saveToGitHub(); window.closeModals(); renderAll(); toast('Товар добавлен'); }
 
 let currentIngs = [];
-window.openDish = () => {
-  $('iDishName').value = ''; $('iIngName').value = ''; $('iIngW').value = '';
-  currentIngs = []; renderDishIngs();
-  $('prodList').innerHTML = S.products.map(p => `<option value="${p.name}">`).join('');
-  window.openModal('mDish');
-};
-window.addIngToList = () => {
-  const name = $('iIngName').value.trim(), weight = $('iIngW').value, unit = $('iIngU').value;
-  if(!name || !weight) return toast('Введите данные');
-  currentIngs.push({ name, weight, unit }); $('iIngName').value = ''; $('iIngW').value = ''; renderDishIngs();
-};
-function renderDishIngs() { $('dishIngs').innerHTML = currentIngs.map(i => `• ${i.name}: ${i.weight}${i.unit}`).join('<br>') || 'Список пуст'; }
-window.saveDish = () => {
-  const name = $('iDishName').value.trim();
-  if(!name || currentIngs.length === 0) return toast('Заполните поля');
-  S.dishes.push({ id: uid(), name, ingredients: currentIngs });
-  save(); window.closeModals(); renderMenu(); toast('Блюдо сохранено');
-}
-window.addToMenu = (id) => { S.menu[id] = true; save(); toast('В меню'); };
+window.openDish = () => { $('iDishName').value = ''; $('iIngName').value = ''; $('iIngW').value = ''; currentIngs = []; renderDishIngs(); $('prodList').innerHTML = S.products.map(p => `<option value="${p.name}">`).join(''); window.openModal('mDish'); };
+window.addIngToList = () => { const name = $('iIngName').value.trim(), weight = $('iIngW').value, unit = $('iIngU').value; if(!name || !weight) return toast('Данные?'); currentIngs.push({ name, weight, unit }); $('iIngName').value = ''; $('iIngW').value = ''; renderDishIngs(); };
+function renderDishIngs() { $('dishIngs').innerHTML = currentIngs.map(i => `• ${i.name}: ${i.weight}${i.unit}`).join('<br>') || 'Пусто'; }
+window.saveDish = () => { const name = $('iDishName').value.trim(); if(!name || currentIngs.length === 0) return toast('Заполните'); S.dishes.push({ id: uid(), name, ingredients: currentIngs }); saveToGitHub(); window.closeModals(); renderMenu(); toast('Сохранено'); }
+window.addToMenu = (id) => { S.menu[id] = true; saveToGitHub(); toast('В меню'); };
 
 window.openShoppingList = () => { renderShopList(); window.openModal('mShop'); };
-function renderShopList() {
-  const container = $('shopList');
-  if (S.shopList.length === 0) { container.innerHTML = '<div style="text-align:center; color:var(--dim); padding:20px;">Пусто</div>'; return; }
-  container.innerHTML = S.shopList.map((item, i) => `<div class="shop-item" onclick="window.toggleShop(${i})"><div class="shop-checkbox ${item.bought ? 'checked' : ''}"></div><div class="shop-text ${item.bought ? 'bought' : ''}">${item.name}</div></div>`).join('');
-}
-window.addManualShopItem = () => { const val = $('iManualShopItem').value.trim(); if(!val) return; S.shopList.push({ name: val, bought: false }); $('iManualShopItem').value = ''; save(); renderShopList(); };
-window.toggleShop = (idx) => { S.shopList[idx].bought = !S.shopList[idx].bought; save(); renderShopList(); };
-window.genShopFromMenu = () => {
-  const menuDishes = S.dishes.filter(d => S.menu[d.id]);
-  if(menuDishes.length === 0) return toast('Меню пустое!');
-  let needed = {};
-  menuDishes.forEach(d => d.ingredients.forEach(ing => needed[ing.name] = (needed[ing.name] || 0) + parseFloat(ing.weight)));
-  for(let name in needed) { if(!S.shopList.find(x => x.name === name)) S.shopList.push({ name, bought: false }); }
-  save(); renderShopList(); toast('Сформировано');
-};
-window.finishShopping = () => {
-  if(S.shopList.filter(x => x.bought).length === 0) return toast('Отметьте купленное');
-  S.shopList = S.shopList.filter(x => !x.bought); save(); renderShopList(); toast('Завершено');
-};
+function renderShopList() { const container = $('shopList'); if (S.shopList.length === 0) { container.innerHTML = '<div style="text-align:center; color:var(--dim); padding:20px;">Пусто</div>'; return; } container.innerHTML = S.shopList.map((item, i) => `<div class="shop-item" onclick="window.toggleShop(${i})"><div class="shop-checkbox ${item.bought ? 'checked' : ''}"></div><div class="shop-text ${item.bought ? 'bought' : ''}">${item.name}</div></div>`).join(''); }
+window.addManualShopItem = () => { const val = $('iManualShopItem').value.trim(); if(!val) return; S.shopList.push({ name: val, bought: false }); $('iManualShopItem').value = ''; saveToGitHub(); renderShopList(); };
+window.toggleShop = (idx) => { S.shopList[idx].bought = !S.shopList[idx].bought; saveToGitHub(); renderShopList(); };
+window.genShopFromMenu = () => { const menuDishes = S.dishes.filter(d => S.menu[d.id]); if(menuDishes.length === 0) return toast('Меню пусто!'); let needed = {}; menuDishes.forEach(d => d.ingredients.forEach(ing => needed[ing.name] = (needed[ing.name] || 0) + parseFloat(ing.weight))); for(let name in needed) { if(!S.shopList.find(x => x.name === name)) S.shopList.push({ name, bought: false }); } saveToGitHub(); renderShopList(); toast('Сформировано'); };
+window.finishShopping = () => { if(S.shopList.filter(x => x.bought).length === 0) return toast('Отметьте!'); S.shopList = S.shopList.filter(x => !x.bought); saveToGitHub(); renderShopList(); toast('Готово'); };
 
-$('authBtn').onclick = () => {
-  S.author = S.author === 'husband' ? 'wife' : 'husband';
-  $('authBtn').className = 'author-btn ' + S.author;
-  $('authAv').textContent = S.author === 'husband' ? 'М' : 'Ж';
-  $('authNm').textContent = S.author === 'husband' ? 'Муж' : 'Жена';
-  updateThemeColor(); save();
-};
+$('authBtn').onclick = () => { S.author = S.author === 'husband' ? 'wife' : 'husband'; $('authBtn').className = 'author-btn ' + S.author; $('authAv').textContent = S.author === 'husband' ? 'М' : 'Ж'; $('authNm').textContent = S.author === 'husband' ? 'Муж' : 'Жена'; updateThemeColor(); saveToGitHub(); };
 
 const carousel = $('carousel');
 const dots = document.querySelectorAll('.dot');
-carousel.addEventListener('scroll', () => {
-  const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
-  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-});
-
+carousel.addEventListener('scroll', () => { const idx = Math.round(carousel.scrollLeft / carousel.clientWidth); dots.forEach((d, i) => d.classList.toggle('active', i === idx)); });
 let isDown = false, startX, scrollLeft;
 carousel.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft; });
 carousel.addEventListener('mouseleave', () => isDown = false);
 carousel.addEventListener('mouseup', () => isDown = false);
-carousel.addEventListener('mousemove', (e) => {
-  if (!isDown) return; e.preventDefault();
-  carousel.scrollLeft = scrollLeft - (e.pageX - carousel.offsetLeft - startX) * 1.5;
-});
+carousel.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); carousel.scrollLeft = scrollLeft - (e.pageX - carousel.offsetLeft - startX) * 1.5; });
 
-function renderAll() {
-  renderDashboard(); renderTx(); renderGoals(); renderProds(); renderMenu();
-}
-
-$('btnExport').onclick = () => {
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(S, null, 2));
-  const dlAnchorElem = document.createElement('a'); dlAnchorElem.setAttribute("href", dataStr); dlAnchorElem.setAttribute("download", "family_budget.json"); dlAnchorElem.click(); toast('Скачано');
-};
-$('btnImport').onclick = () => $('importFile').click();
-$('importFile').onchange = (e) => {
-  const file = e.target.files[0]; if(!file) return;
-  const reader = new FileReader();
-  reader.onload = (event) => {
-    try {
-      const importedData = JSON.parse(event.target.result);
-      if (importedData.txs !== undefined) {
-        if(confirm('Заменить данные?')) { S = importedData; updateThemeColor(); save(); renderAll(); toast('Загружено'); }
-      }
-    } catch(err) { toast('Ошибка'); }
-  };
-  reader.readAsText(file); e.target.value = '';
-};
+function renderAll() { renderDashboard(); renderTx(); renderGoals(); renderProds(); renderMenu(); }
 </script>
 </body>
 </html>
