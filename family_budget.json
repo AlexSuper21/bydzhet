@@ -23,16 +23,7 @@
       "date": "2026-11-01"
     }
   ],
-  "goals": [
-    {
-      "id": "0f6z3li12",
-      "name": "Куртка",
-      "target": 20000,
-      "months": 2,
-      "saved": 500,
-      "stars": 2
-    }
-  ],
+  "goals": [],
   "reserve": 0,
   "products": [
     {
