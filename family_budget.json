@@ -23,7 +23,16 @@
       "date": "2026-11-01"
     }
   ],
-  "goals": [],
+  "goals": [
+    {
+      "id": "uiu65te7s",
+      "name": "Ипотека",
+      "target": 1200000,
+      "months": 2,
+      "saved": 0,
+      "stars": 3
+    }
+  ],
   "reserve": 0,
   "products": [
     {
