@@ -68,10 +68,6 @@
   },
   "shopList": [
     {
-      "name": "Фарш",
-      "bought": false
-    },
-    {
       "name": "Конфеты",
       "bought": false
     }
