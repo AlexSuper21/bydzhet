@@ -1,0 +1,88 @@
+{
+  "author": "husband",
+  "txs": [
+    {
+      "id": "rlagrfa1t",
+      "type": "income",
+      "sum": 80000,
+      "cat": "ЗП",
+      "date": "2026-11-01"
+    },
+    {
+      "id": "fuuwgxy5j",
+      "type": "expense",
+      "sum": 318,
+      "cat": "Пиво ",
+      "date": "2026-11-01"
+    },
+    {
+      "id": "nnn1r2809",
+      "type": "expense",
+      "sum": 100,
+      "cat": "Сметана ",
+      "date": "2026-11-01"
+    }
+  ],
+  "goals": [
+    {
+      "id": "0f6z3li12",
+      "name": "Куртка",
+      "target": 20000,
+      "months": 2,
+      "saved": 500,
+      "stars": 2
+    }
+  ],
+  "reserve": 0,
+  "products": [
+    {
+      "id": "bo2qees94",
+      "name": "Фарш"
+    }
+  ],
+  "prices": [
+    {
+      "id": "qfcchgae0",
+      "prodId": "bo2qees94",
+      "store": "Магнит",
+      "weight": 400,
+      "price": 130,
+      "date": "2026-11-01"
+    }
+  ],
+  "dishes": [
+    {
+      "id": "lulx5qqgm",
+      "name": "Котлеты",
+      "ingredients": [
+        {
+          "name": "Фарш",
+          "weight": "500",
+          "unit": "гр"
+        }
+      ]
+    }
+  ],
+  "menu": {
+    "lulx5qqgm": true
+  },
+  "shopList": [
+    {
+      "name": "Фарш",
+      "bought": false
+    },
+    {
+      "name": "Конфеты",
+      "bought": false
+    }
+  ],
+  "events": [
+    {
+      "id": "hc73tphcs",
+      "name": "День рождение тестя",
+      "date": "2026-11-23",
+      "budget": 3000
+    }
+  ],
+  "wishes": []
+}
