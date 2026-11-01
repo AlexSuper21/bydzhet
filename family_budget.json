@@ -76,13 +76,6 @@
       "bought": false
     }
   ],
-  "events": [
-    {
-      "id": "hc73tphcs",
-      "name": "День рождение тестя",
-      "date": "2026-11-23",
-      "budget": 3000
-    }
-  ],
+  "events": [],
   "wishes": []
 }
