@@ -49,7 +49,7 @@
   .brand span { color: var(--acc); transition: color 0.3s; }
   
   .header-right { display: flex; align-items: center; gap: 8px; }
-  .file-status { font-size: 11px; color: var(--suc); margin-right: 5px; display: none; background: rgba(48,209,88,0.1); padding: 4px 8px; border-radius: 10px;}
+  .file-status { font-size: 11px; color: var(--suc); margin-right: 5px; display: none; background: rgba(48,209,88,0.1); padding: 4px 8px; border-radius: 10px; font-weight: 600;}
   
   .author-btn { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: var(--surf2); border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
   .author-btn:hover { background: var(--brd); }
@@ -58,9 +58,9 @@
   .wife .avatar { background: #ff6b81; }
 
   /* ================= КАРУСЕЛЬ ================= */
-  .carousel-container { position: absolute; top: 60px; bottom: 50px; left: 0; right: 0; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; cursor: grab; }
+  .carousel-container { position: absolute; top: 60px; bottom: 50px; left: 0; right: 0; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
   .carousel-container::-webkit-scrollbar { display: none; }
-  .slide { flex: 0 0 100vw; width: 100vw; height: 100%; scroll-snap-align: start; overflow-y: auto; overflow-x: hidden; padding: 16px; touch-action: pan-y; }
+  .slide { flex: 0 0 100vw; width: 100vw; height: 100%; scroll-snap-align: start; overflow-y: auto; overflow-x: hidden; padding: 16px; }
   .inner { max-width: 500px; margin: 0 auto; padding-bottom: 30px; }
 
   /* ================= ТОЧКИ ================= */
@@ -150,7 +150,7 @@
   <header class="header">
     <div class="brand">Семья<span>.</span>Бюджет</div>
     <div class="header-right">
-      <div class="file-status" id="fileStatus">Облако: ОК</div>
+      <div class="file-status" id="fileStatus">Синхронизация...</div>
       <div class="author-btn husband" id="authBtn">
         <span class="avatar" id="authAv">М</span>
         <span id="authNm">Муж</span>
@@ -333,7 +333,6 @@ const $ = id => document.getElementById(id);
 const fmt = n => new Intl.NumberFormat('ru-RU', {style:'currency', currency:'RUB', maximumFractionDigits:0}).format(n || 0);
 const uid = () => Math.random().toString(36).substr(2, 9);
 
-// GitHub Настройки
 const GITHUB_USER = 'AlexSuper21';
 const GITHUB_REPO = 'bydzhet';
 const GITHUB_FILE = 'family_budget.json';
@@ -372,7 +371,7 @@ async function loadFromGitHub() {
   
   if (!res.ok) {
     if(res.status === 404) return true;
-    throw new Error('Ошибка загрузки');
+    throw new Error('Ошибка загрузки: ' + res.status);
   }
   
   const data = await res.json();
@@ -389,10 +388,22 @@ async function loadFromGitHub() {
 async function saveToGitHub() {
   if (!ghToken) return;
   $('fileStatus').textContent = 'Синхронизация...';
-  
+  $('fileStatus').style.color = 'var(--warn)';
+
+  // Если SHA потерян, пробуем получить его
+  if (!currentSha) {
+    try {
+      const getUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+      const getRes = await fetch(getUrl, { headers: { 'Authorization': `token ${ghToken}` } });
+      if (getRes.ok) {
+        const data = await getRes.json();
+        currentSha = data.sha;
+      }
+    } catch(e) {}
+  }
+
   const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(S, null, 2))));
   const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
-  
   const body = {
     message: `Update budget data ${new Date().toISOString()}`,
     content: contentBase64,
@@ -412,7 +423,14 @@ async function saveToGitHub() {
       $('fileStatus').textContent = '✅ В облаке';
       $('fileStatus').style.color = 'var(--suc)';
     } else {
-      throw new Error('Ошибка сохранения');
+      const errData = await res.json();
+      console.error('Ошибка GitHub:', errData);
+      $('fileStatus').textContent = '⚠️ Ошибка ' + res.status;
+      $('fileStatus').style.color = 'var(--dng)';
+      
+      if(res.status === 401 || res.status === 403) {
+        alert('ОШИБКА ДОСТУПА!\nУбедитесь, что в настройках токена (Contents) стоит доступ "Read and write" (Чтение и запись).');
+      }
     }
   } catch (err) {
     console.error(err);
@@ -439,15 +457,14 @@ $('btnEnter').onclick = async () => {
     $('fileStatus').style.display = 'block';
     updateThemeColor(); 
     renderAll();
-    toast('Данные загружены из облака!');
+    toast('Данные загружены!');
   } catch (err) {
-    alert('Ошибка доступа к GitHub. Проверьте токен и интернет.');
+    alert('Ошибка доступа к GitHub. Проверьте токен, интернет и наличие файла family_budget.json в репозитории.');
     $('btnEnter').textContent = 'ВОЙТИ';
     $('btnEnter').disabled = false;
   }
 };
 
-// Попытка авто-входа если токен уже сохранен
 if(ghToken) {
   $('inpToken').value = ghToken;
   $('btnEnter').click();
@@ -698,14 +715,30 @@ window.finishShopping = () => { if(S.shopList.filter(x => x.bought).length === 0
 
 $('authBtn').onclick = () => { S.author = S.author === 'husband' ? 'wife' : 'husband'; $('authBtn').className = 'author-btn ' + S.author; $('authAv').textContent = S.author === 'husband' ? 'М' : 'Ж'; $('authNm').textContent = S.author === 'husband' ? 'Муж' : 'Жена'; updateThemeColor(); saveToGitHub(); };
 
+// ===================== ИСПРАВЛЕННЫЕ СВАЙПЫ =====================
 const carousel = $('carousel');
 const dots = document.querySelectorAll('.dot');
-carousel.addEventListener('scroll', () => { const idx = Math.round(carousel.scrollLeft / carousel.clientWidth); dots.forEach((d, i) => d.classList.toggle('active', i === idx)); });
+carousel.addEventListener('scroll', () => { 
+  const idx = Math.round(carousel.scrollLeft / carousel.clientWidth); 
+  dots.forEach((d, i) => d.classList.toggle('active', i === idx)); 
+});
+
+// Перетаскивание мышкой ТОЛЬКО на компьютере (pointerType === 'mouse')
 let isDown = false, startX, scrollLeft;
-carousel.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft; });
-carousel.addEventListener('mouseleave', () => isDown = false);
-carousel.addEventListener('mouseup', () => isDown = false);
-carousel.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); carousel.scrollLeft = scrollLeft - (e.pageX - carousel.offsetLeft - startX) * 1.5; });
+carousel.addEventListener('pointerdown', (e) => { 
+  if (e.pointerType === 'mouse') {
+    isDown = true; 
+    startX = e.pageX - carousel.offsetLeft; 
+    scrollLeft = carousel.scrollLeft; 
+  }
+});
+carousel.addEventListener('pointerleave', () => isDown = false);
+carousel.addEventListener('pointerup', () => isDown = false);
+carousel.addEventListener('pointermove', (e) => { 
+  if (!isDown || e.pointerType !== 'mouse') return; 
+  e.preventDefault(); 
+  carousel.scrollLeft = scrollLeft - (e.pageX - carousel.offsetLeft - startX) * 1.5; 
+});
 
 function renderAll() { renderDashboard(); renderTx(); renderGoals(); renderProds(); renderMenu(); }
 </script>
