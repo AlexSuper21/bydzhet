@@ -128,8 +128,9 @@
   .toast { position: fixed; bottom: 70px; left: 50%; transform: translate(-50%, 20px); background: var(--acc); color: #fff; padding: 12px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; z-index: 1000; opacity: 0; transition: 0.3s; pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
   .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-  .shop-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--brd); cursor: pointer; }
+  .shop-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--brd); }
   .shop-item:last-child { border-bottom: none; }
+  .shop-left { display: flex; align-items: center; gap: 12px; cursor: pointer; flex: 1; }
   .shop-checkbox { width: 22px; height: 22px; border: 2px solid var(--acc); border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
   .shop-checkbox.checked { background: var(--acc); }
   .shop-checkbox.checked::after { content: '✓'; color: #fff; font-size: 14px; font-weight: bold; }
@@ -316,11 +317,35 @@
   </div>
 </div>
 
-<div class="ov" id="mProd"><div class="mod"><div class="mod-head"><div class="mod-title">Товар и Цена</div><button class="close" onclick="window.closeModals()">×</button></div><div class="fld"><label>Название</label><input id="iProdName" placeholder="Фарш"></div><div class="fld"><label>Магазин</label><input id="iProdStore" placeholder="Магнит"></div><div style="display:flex; gap:10px;"><div class="fld" style="flex:1;"><label>Вес/Объем</label><input id="iProdW" type="number" placeholder="400"></div><div class="fld" style="flex:1;"><label>Цена (₽)</label><input id="iProdP" type="number" placeholder="130"></div></div><button class="btn btn-p btn-block" onclick="window.saveProd()">Сохранить</button></div></div>
+<div class="ov" id="mProd">
+  <div class="mod">
+    <div class="mod-head"><div class="mod-title" id="mProdTitle">Товар и Цена</div><button class="close" onclick="window.closeModals()">×</button></div>
+    <div class="fld"><label>Название</label><input id="iProdName" placeholder="Фарш"></div>
+    <div class="fld"><label>Магазин</label><input id="iProdStore" placeholder="Магнит"></div>
+    <div style="display:flex; gap:10px;">
+      <div class="fld" style="flex:1;"><label>Вес/Объем</label><input id="iProdW" type="number" placeholder="400"></div>
+      <div class="fld" style="flex:1;"><label>Цена (₽)</label><input id="iProdP" type="number" placeholder="130"></div>
+    </div>
+    <button class="btn btn-p btn-block" onclick="window.saveProd()">Сохранить</button>
+  </div>
+</div>
 
 <div class="ov" id="mDish"><div class="mod"><div class="mod-head"><div class="mod-title">Новое блюдо</div><button class="close" onclick="window.closeModals()">×</button></div><div class="fld"><label>Название блюда</label><input id="iDishName" placeholder="Котлеты"></div><div class="fld"><label>Ингредиент</label><input id="iIngName" placeholder="Фарш" list="prodList"><datalist id="prodList"></datalist></div><div style="display:flex; gap:10px;"><div class="fld" style="flex:1;"><label>Кол-во</label><input id="iIngW" type="number" placeholder="500"></div><div class="fld" style="flex:1;"><label>Ед. изм.</label><select id="iIngU"><option>гр</option><option>шт</option></select></div></div><button class="btn btn-g btn-block" style="margin-bottom:10px;" onclick="window.addIngToList()">+ Добавить ингредиент в список</button><div id="dishIngs" style="font-size:13px; color:var(--dim); margin-bottom:15px;">Список пуст</div><button class="btn btn-p btn-block" onclick="window.saveDish()">Сохранить блюдо</button></div></div>
 
-<div class="ov" id="mShop"><div class="mod"><div class="mod-head"><div class="mod-title">Список покупок</div><button class="close" onclick="window.closeModals()">×</button></div><div style="display:flex; gap:8px; margin-bottom:16px;"><input id="iManualShopItem" placeholder="Добавить вручную" style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--brd); background:var(--surf2); color:var(--txt); font-size:14px;"><button class="btn btn-g" onclick="window.addManualShopItem()">＋</button></div><div id="shopList" style="margin-bottom:20px; max-height:40vh; overflow-y:auto;"></div><div style="display:flex; gap:8px;"><button class="btn btn-g" style="flex:1;" onclick="window.genShopFromMenu()">🪄 Из меню</button><button class="btn btn-p" style="flex:1;" onclick="window.finishShopping()">✅ Завершить</button></div></div></div>
+<div class="ov" id="mShop">
+  <div class="mod">
+    <div class="mod-head"><div class="mod-title">Список покупок</div><button class="close" onclick="window.closeModals()">×</button></div>
+    <div style="display:flex; gap:8px; margin-bottom:16px;">
+      <input id="iManualShopItem" placeholder="Добавить вручную" style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--brd); background:var(--surf2); color:var(--txt); font-size:14px;">
+      <button class="btn btn-g" onclick="window.addManualShopItem()">＋</button>
+    </div>
+    <div id="shopList" style="margin-bottom:20px; max-height:40vh; overflow-y:auto;"></div>
+    <div style="display:flex; gap:8px;">
+      <button class="btn btn-g" style="flex:1;" onclick="window.genShopFromMenu()">🪄 Из меню</button>
+      <button class="btn btn-p" style="flex:1;" onclick="window.finishShopping()">✅ Завершить</button>
+    </div>
+  </div>
+</div>
 
 <div class="ov" id="mEvent"><div class="mod"><div class="mod-head"><div class="mod-title">Новое событие</div><button class="close" onclick="window.closeModals()">×</button></div><div class="fld"><label>Название</label><input id="iEvName" placeholder="День рождения"></div><div class="fld"><label>Дата</label><input id="iEvDate" type="date"></div><div class="fld"><label>Бюджет (₽)</label><input id="iEvBudget" type="number" placeholder="10000"></div><button class="btn btn-p btn-block" onclick="window.saveEvent()">Сохранить</button></div></div>
 
@@ -344,6 +369,7 @@ let ghToken = localStorage.getItem('gh_token') || '';
 let parsedReceiptItems = [];
 let currentHistFilter = 'current_month'; 
 let editTxId = null;
+let editProdId = null; // Для редактирования товара
 
 window.toast = msg => {
   const t = $('toast'); t.textContent = msg; t.classList.add('show');
@@ -390,27 +416,24 @@ async function saveToGitHub() {
   $('fileStatus').textContent = 'Синхронизация...';
   $('fileStatus').style.color = 'var(--warn)';
 
-  // Если SHA потерян, пробуем получить его
-  if (!currentSha) {
-    try {
-      const getUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
-      const getRes = await fetch(getUrl, { headers: { 'Authorization': `token ${ghToken}` } });
-      if (getRes.ok) {
-        const data = await getRes.json();
-        currentSha = data.sha;
-      }
-    } catch(e) {}
-  }
-
-  const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(S, null, 2))));
-  const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
-  const body = {
-    message: `Update budget data ${new Date().toISOString()}`,
-    content: contentBase64,
-    sha: currentSha || undefined
-  };
-
   try {
+    // 1. Всегда запрашиваем свежий SHA перед сохранением, чтобы избежать ошибки 409
+    const getUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}?t=${Date.now()}`;
+    const getRes = await fetch(getUrl, { headers: { 'Authorization': `token ${ghToken}` } });
+    if (getRes.ok) {
+      const getData = await getRes.json();
+      currentSha = getData.sha;
+    }
+
+    // 2. Сохраняем данные с актуальным SHA
+    const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(S, null, 2))));
+    const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+    const body = {
+      message: `Update budget data ${new Date().toISOString()}`,
+      content: contentBase64,
+      sha: currentSha || undefined
+    };
+
     const res = await fetch(url, {
       method: 'PUT',
       headers: { 'Authorization': `token ${ghToken}`, 'Content-Type': 'application/json' },
@@ -423,11 +446,8 @@ async function saveToGitHub() {
       $('fileStatus').textContent = '✅ В облаке';
       $('fileStatus').style.color = 'var(--suc)';
     } else {
-      const errData = await res.json();
-      console.error('Ошибка GitHub:', errData);
       $('fileStatus').textContent = '⚠️ Ошибка ' + res.status;
       $('fileStatus').style.color = 'var(--dng)';
-      
       if(res.status === 401 || res.status === 403) {
         alert('ОШИБКА ДОСТУПА!\nУбедитесь, что в настройках токена (Contents) стоит доступ "Read and write" (Чтение и запись).');
       }
@@ -527,7 +547,22 @@ function renderProds() {
     const prices = S.prices.filter(x => x.prodId === p.id).sort((a,b) => new Date(b.date) - new Date(a.date));
     const last = prices[0];
     if(!last) return '';
-    return `<div class="row"><div class="row-left"><div class="icon-box">📦</div><div><div style="font-weight:600; font-size:14px;">${p.name}</div><div style="font-size:11px; color:var(--dim);">${last.store} • ${last.weight}гр за ${last.price}₽</div></div></div><div style="text-align:right;"><div style="font-weight:700; color:var(--acc); font-size:13px;">${(last.price / last.weight).toFixed(2)} ₽/ед</div></div></div>`;
+    return `
+      <div class="row">
+        <div class="row-left">
+          <div class="icon-box">📦</div>
+          <div>
+            <div style="font-weight:600; font-size:14px;">${p.name}</div>
+            <div style="font-size:11px; color:var(--dim);">${last.store} • ${last.weight}гр за ${last.price}₽</div>
+            <div style="font-weight:700; color:var(--acc); font-size:12px;">${(last.price / last.weight).toFixed(2)} ₽/ед</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px;">
+          <button class="btn btn-g btn-sm" onclick="window.editProd('${p.id}')">✏️</button>
+          <button class="btn btn-d btn-sm" onclick="window.delProd('${p.id}')">✕</button>
+        </div>
+      </div>
+    `;
   }).join('');
 }
 
@@ -677,7 +712,61 @@ window.delTx = (id) => {
   }
 };
 
-// ОСТАЛЬНЫЕ ФУНКЦИИ
+// ===================== СПРАВОЧНИК ТОВАРОВ =====================
+window.openProd = () => { 
+  editProdId = null; 
+  $('mProdTitle').textContent = 'Товар и Цена'; 
+  $('iProdName').value = ''; $('iProdStore').value = ''; $('iProdW').value = ''; $('iProdP').value = ''; 
+  window.openModal('mProd'); 
+};
+
+window.editProd = (id) => {
+  const p = S.products.find(x => x.id === id);
+  if(!p) return;
+  const prices = S.prices.filter(x => x.prodId === id).sort((a,b) => new Date(b.date) - new Date(a.date));
+  const last = prices[0];
+  
+  editProdId = id;
+  $('mProdTitle').textContent = 'Редактировать товар';
+  $('iProdName').value = p.name;
+  $('iProdStore').value = last ? last.store : '';
+  $('iProdW').value = last ? last.weight : '';
+  $('iProdP').value = last ? last.price : '';
+  window.openModal('mProd');
+};
+
+window.delProd = (id) => {
+  if(confirm('Удалить товар и всю историю цен?')) {
+    S.products = S.products.filter(x => x.id !== id);
+    S.prices = S.prices.filter(x => x.prodId !== id);
+    saveToGitHub(); renderAll();
+  }
+};
+
+window.saveProd = () => {
+  const n = $('iProdName').value.trim(), s = $('iProdStore').value.trim(), w = parseFloat($('iProdW').value), p = parseFloat($('iProdP').value);
+  if(!n || !s || !w || !p) return toast('Заполните все поля');
+  
+  let prodId = editProdId;
+  
+  if(editProdId) {
+    const prod = S.products.find(x => x.id === editProdId);
+    if(prod) prod.name = n;
+  } else {
+    let prod = S.products.find(x => x.name.toLowerCase() === n.toLowerCase());
+    if(prod) {
+      prodId = prod.id;
+    } else {
+      prodId = uid();
+      S.products.push({ id: prodId, name: n });
+    }
+  }
+  
+  S.prices.push({ id: uid(), prodId: prodId, store: s, weight: w, price: p, date: new Date().toISOString().slice(0,10) });
+  saveToGitHub(); window.closeModals(); renderAll(); toast(editProdId ? 'Товар обновлен' : 'Товар добавлен');
+};
+
+// ===================== ОСТАЛЬНЫЕ ФУНКЦИИ =====================
 window.openGoal = () => { $('iGoalName').value = ''; $('iGoalSum').value = ''; $('iGoalMonths').value = ''; window.openModal('mGoal'); };
 window.saveGoal = () => { const n = $('iGoalName').value.trim(), s = parseFloat($('iGoalSum').value), m = parseInt($('iGoalMonths').value); if(!n || !s || !m) return toast('Заполните поля'); S.goals.push({ id: uid(), name: n, target: s, months: m, saved: 0, stars: 3 }); saveToGitHub(); window.closeModals(); renderAll(); toast('Цель создана'); }
 window.delGoal = (id) => { if(confirm('Удалить?')) { S.goals = S.goals.filter(x => x.id !== id); saveToGitHub(); renderAll(); } };
@@ -696,9 +785,6 @@ window.addWish = () => { const n = $('iWishName').value.trim(); if(!n) return; S
 window.delWish = (id) => { S.wishes = S.wishes.filter(w => w.id !== id); saveToGitHub(); renderWishes(); };
 window.makeGoal = (id) => { const w = S.wishes.find(x => x.id === id); if(!w) return; window.closeModals(); window.openGoal(); $('iGoalName').value = w.name; S.wishes = S.wishes.filter(x => x.id !== id); saveToGitHub(); };
 
-window.openProd = () => { $('iProdName').value = ''; $('iProdStore').value = ''; $('iProdW').value = ''; $('iProdP').value = ''; window.openModal('mProd'); };
-window.saveProd = () => { const n = $('iProdName').value.trim(), s = $('iProdStore').value.trim(), w = parseFloat($('iProdW').value), p = parseFloat($('iProdP').value); if(!n || !s || !w || !p) return toast('Заполните'); let prod = S.products.find(x => x.name.toLowerCase() === n.toLowerCase()); if(!prod) { prod = { id: uid(), name: n }; S.products.push(prod); } S.prices.push({ id: uid(), prodId: prod.id, store: s, weight: w, price: p, date: new Date().toISOString().slice(0,10) }); saveToGitHub(); window.closeModals(); renderAll(); toast('Товар добавлен'); }
-
 let currentIngs = [];
 window.openDish = () => { $('iDishName').value = ''; $('iIngName').value = ''; $('iIngW').value = ''; currentIngs = []; renderDishIngs(); $('prodList').innerHTML = S.products.map(p => `<option value="${p.name}">`).join(''); window.openModal('mDish'); };
 window.addIngToList = () => { const name = $('iIngName').value.trim(), weight = $('iIngW').value, unit = $('iIngU').value; if(!name || !weight) return toast('Данные?'); currentIngs.push({ name, weight, unit }); $('iIngName').value = ''; $('iIngW').value = ''; renderDishIngs(); };
@@ -706,16 +792,50 @@ function renderDishIngs() { $('dishIngs').innerHTML = currentIngs.map(i => `• 
 window.saveDish = () => { const name = $('iDishName').value.trim(); if(!name || currentIngs.length === 0) return toast('Заполните'); S.dishes.push({ id: uid(), name, ingredients: currentIngs }); saveToGitHub(); window.closeModals(); renderMenu(); toast('Сохранено'); }
 window.addToMenu = (id) => { S.menu[id] = true; saveToGitHub(); toast('В меню'); };
 
+// ===================== СПИСОК ПОКУПОК =====================
 window.openShoppingList = () => { renderShopList(); window.openModal('mShop'); };
-function renderShopList() { const container = $('shopList'); if (S.shopList.length === 0) { container.innerHTML = '<div style="text-align:center; color:var(--dim); padding:20px;">Пусто</div>'; return; } container.innerHTML = S.shopList.map((item, i) => `<div class="shop-item" onclick="window.toggleShop(${i})"><div class="shop-checkbox ${item.bought ? 'checked' : ''}"></div><div class="shop-text ${item.bought ? 'bought' : ''}">${item.name}</div></div>`).join(''); }
+
+function renderShopList() { 
+  const container = $('shopList'); 
+  if (S.shopList.length === 0) { 
+    container.innerHTML = '<div style="text-align:center; color:var(--dim); padding:20px;">Пусто. Добавьте товары.</div>'; 
+    return; 
+  } 
+  container.innerHTML = S.shopList.map((item, i) => `
+    <div class="shop-item">
+      <div class="shop-left" onclick="window.toggleShop(${i})">
+        <div class="shop-checkbox ${item.bought ? 'checked' : ''}"></div>
+        <div class="shop-text ${item.bought ? 'bought' : ''}">${item.name}</div>
+      </div>
+      <button class="btn btn-d btn-sm" onclick="window.delShopItem(${i})" style="padding:4px 8px; font-size:12px;">✕</button>
+    </div>
+  `).join(''); 
+}
+
 window.addManualShopItem = () => { const val = $('iManualShopItem').value.trim(); if(!val) return; S.shopList.push({ name: val, bought: false }); $('iManualShopItem').value = ''; saveToGitHub(); renderShopList(); };
 window.toggleShop = (idx) => { S.shopList[idx].bought = !S.shopList[idx].bought; saveToGitHub(); renderShopList(); };
-window.genShopFromMenu = () => { const menuDishes = S.dishes.filter(d => S.menu[d.id]); if(menuDishes.length === 0) return toast('Меню пусто!'); let needed = {}; menuDishes.forEach(d => d.ingredients.forEach(ing => needed[ing.name] = (needed[ing.name] || 0) + parseFloat(ing.weight))); for(let name in needed) { if(!S.shopList.find(x => x.name === name)) S.shopList.push({ name, bought: false }); } saveToGitHub(); renderShopList(); toast('Сформировано'); };
-window.finishShopping = () => { if(S.shopList.filter(x => x.bought).length === 0) return toast('Отметьте!'); S.shopList = S.shopList.filter(x => !x.bought); saveToGitHub(); renderShopList(); toast('Готово'); };
+window.delShopItem = (idx) => { S.shopList.splice(idx, 1); saveToGitHub(); renderShopList(); };
+
+window.genShopFromMenu = () => { 
+  const menuDishes = S.dishes.filter(d => S.menu[d.id]); 
+  if(menuDishes.length === 0) return toast('Меню пусто!'); 
+  let needed = {}; 
+  menuDishes.forEach(d => d.ingredients.forEach(ing => needed[ing.name] = (needed[ing.name] || 0) + parseFloat(ing.weight))); 
+  for(let name in needed) { 
+    if(!S.shopList.find(x => x.name === name)) S.shopList.push({ name, bought: false }); 
+  } 
+  saveToGitHub(); renderShopList(); toast('Сформировано'); 
+};
+
+window.finishShopping = () => { 
+  if(S.shopList.filter(x => x.bought).length === 0) return toast('Отметьте купленные товары!'); 
+  S.shopList = S.shopList.filter(x => !x.bought); 
+  saveToGitHub(); renderShopList(); toast('Купленное удалено'); 
+};
 
 $('authBtn').onclick = () => { S.author = S.author === 'husband' ? 'wife' : 'husband'; $('authBtn').className = 'author-btn ' + S.author; $('authAv').textContent = S.author === 'husband' ? 'М' : 'Ж'; $('authNm').textContent = S.author === 'husband' ? 'Муж' : 'Жена'; updateThemeColor(); saveToGitHub(); };
 
-// ===================== ИСПРАВЛЕННЫЕ СВАЙПЫ =====================
+// ===================== СВАЙПЫ =====================
 const carousel = $('carousel');
 const dots = document.querySelectorAll('.dot');
 carousel.addEventListener('scroll', () => { 
@@ -723,7 +843,6 @@ carousel.addEventListener('scroll', () => {
   dots.forEach((d, i) => d.classList.toggle('active', i === idx)); 
 });
 
-// Перетаскивание мышкой ТОЛЬКО на компьютере (pointerType === 'mouse')
 let isDown = false, startX, scrollLeft;
 carousel.addEventListener('pointerdown', (e) => { 
   if (e.pointerType === 'mouse') {
