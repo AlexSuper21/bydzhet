@@ -42,6 +42,27 @@
       "sum": 220,
       "cat": "Шоколадки 4 шт",
       "date": "2026-11-03"
+    },
+    {
+      "id": "gveo8ecfo",
+      "type": "expense",
+      "sum": 324,
+      "cat": "Пармезан",
+      "date": "2026-11-03"
+    },
+    {
+      "id": "f7s1maaf1",
+      "type": "expense",
+      "sum": 126,
+      "cat": "Сырки 2 шт",
+      "date": "2026-11-03"
+    },
+    {
+      "id": "3velxhphd",
+      "type": "expense",
+      "sum": 130,
+      "cat": "Чипсы",
+      "date": "2026-11-03"
     }
   ],
   "goals": [
