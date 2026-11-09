@@ -441,6 +441,20 @@
       "date": "2026-11-09",
       "sum": 10000,
       "cat": "Квартплата"
+    },
+    {
+      "id": "wlsxqbk1t",
+      "type": "expense",
+      "sum": 900,
+      "cat": "Коньяк",
+      "date": "2026-11-09"
+    },
+    {
+      "id": "s2ltyy7np",
+      "type": "expense",
+      "sum": 100,
+      "cat": "Сок",
+      "date": "2026-11-09"
     }
   ],
   "goals": [
