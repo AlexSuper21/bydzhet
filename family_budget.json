@@ -133,6 +133,55 @@
       "sum": 5,
       "cat": "Пакет майка",
       "date": "2026-11-04"
+    },
+    {
+      "id": "c5r35y9kb",
+      "type": "expense",
+      "sum": 60,
+      "cat": "Макароны",
+      "date": "2026-11-04"
+    },
+    {
+      "id": "dm3ksaa54",
+      "type": "expense",
+      "sum": 16,
+      "cat": "Семечки",
+      "date": "2026-11-04"
+    },
+    {
+      "id": "ldu1q28bb",
+      "type": "expense",
+      "sum": 160,
+      "cat": "Масло подсолнечное ",
+      "date": "2026-11-04"
+    },
+    {
+      "id": "6mwkt7p28",
+      "type": "expense",
+      "sum": 109,
+      "cat": "Кола",
+      "date": "2026-11-04"
+    },
+    {
+      "id": "s9wsckfsb",
+      "type": "expense",
+      "sum": 150,
+      "cat": "Сыр",
+      "date": "2026-11-04"
+    },
+    {
+      "id": "nnzdjjvgy",
+      "type": "expense",
+      "sum": 100,
+      "cat": "Ветчина",
+      "date": "2026-11-04"
+    },
+    {
+      "id": "xbcoxae6e",
+      "type": "expense",
+      "sum": 560,
+      "cat": "Индейка 2 уп",
+      "date": "2026-11-04"
     }
   ],
   "goals": [
