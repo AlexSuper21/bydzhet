@@ -224,6 +224,97 @@
       "sum": 100,
       "cat": "Магнитики 2 шт",
       "date": "2026-11-04"
+    },
+    {
+      "id": "v55d4obou",
+      "type": "expense",
+      "sum": 144,
+      "cat": "Медальоны из филе тунца с брокколи ",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "g3wadiubc",
+      "type": "expense",
+      "sum": 503,
+      "cat": "Горбуша в медовом соусе",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "weprp3hrp",
+      "type": "expense",
+      "sum": 39,
+      "cat": "Хлебцы",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "ufuk83qyw",
+      "type": "expense",
+      "sum": 114,
+      "cat": "Чизкейк ",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "t8a2ve3mq",
+      "type": "expense",
+      "sum": 64,
+      "cat": "Лук замороженный ",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "w797eglad",
+      "type": "expense",
+      "sum": 134,
+      "cat": "Овощи заморозка",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "orzjckgac",
+      "type": "expense",
+      "sum": 164,
+      "cat": "Картофель фри ",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "i3coooqxp",
+      "type": "expense",
+      "sum": 164,
+      "cat": "Эклеры ",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "aekcts0ny",
+      "type": "expense",
+      "sum": 378,
+      "cat": "Филе индейки 2 уп",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "cpvie5a31",
+      "type": "expense",
+      "sum": 143,
+      "cat": "Читос",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "nc88nkqm4",
+      "type": "expense",
+      "sum": 87,
+      "cat": "Конфеты",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "ttf8y90wj",
+      "type": "expense",
+      "sum": 54,
+      "cat": "Чиабатта ",
+      "date": "2026-11-05"
+    },
+    {
+      "id": "9lubgvnqf",
+      "type": "expense",
+      "sum": 94,
+      "cat": "Тунец",
+      "date": "2026-11-05"
     }
   ],
   "goals": [
