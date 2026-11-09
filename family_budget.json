@@ -322,6 +322,55 @@
       "date": "2026-11-06",
       "sum": 344,
       "cat": "Патчи"
+    },
+    {
+      "id": "x6ohmr2t0",
+      "type": "expense",
+      "sum": 132,
+      "cat": "Йогурт 4 шт",
+      "date": "2026-11-06"
+    },
+    {
+      "id": "b283jixzx",
+      "type": "expense",
+      "sum": 70,
+      "cat": "Трубочки со сгущенкой 2 шт",
+      "date": "2026-11-06"
+    },
+    {
+      "id": "yuh6phcyh",
+      "type": "expense",
+      "sum": 160,
+      "cat": "Майонез ",
+      "date": "2026-11-06"
+    },
+    {
+      "id": "hqzprsefn",
+      "type": "expense",
+      "sum": 97,
+      "cat": "Крабовые палочки ",
+      "date": "2026-11-06"
+    },
+    {
+      "id": "j5qlqaox7",
+      "type": "expense",
+      "sum": 110,
+      "cat": "Шоколадки 2 шт",
+      "date": "2026-11-06"
+    },
+    {
+      "id": "d1wiktx5b",
+      "type": "expense",
+      "sum": 70,
+      "cat": "Багет чесночный ",
+      "date": "2026-11-06"
+    },
+    {
+      "id": "6b5f6x3qb",
+      "type": "expense",
+      "sum": 50,
+      "cat": "Багет",
+      "date": "2026-11-06"
     }
   ],
   "goals": [
