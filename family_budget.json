@@ -378,6 +378,41 @@
       "date": "2026-11-06",
       "sum": 400,
       "cat": "Связь"
+    },
+    {
+      "id": "hk2eynrba",
+      "type": "expense",
+      "sum": 110,
+      "cat": "Кола",
+      "date": "2026-11-08"
+    },
+    {
+      "id": "9momwfe60",
+      "type": "expense",
+      "sum": 160,
+      "cat": "Пиво",
+      "date": "2026-11-08"
+    },
+    {
+      "id": "1y0ai5yi4",
+      "type": "expense",
+      "sum": 34,
+      "cat": "Батон ",
+      "date": "2026-11-08"
+    },
+    {
+      "id": "ztbxkzsgh",
+      "type": "expense",
+      "sum": 280,
+      "cat": "Наггетсы 2 уп",
+      "date": "2026-11-08"
+    },
+    {
+      "id": "3d104cdw2",
+      "type": "expense",
+      "sum": 11,
+      "cat": "Пакет",
+      "date": "2026-11-08"
     }
   ],
   "goals": [
