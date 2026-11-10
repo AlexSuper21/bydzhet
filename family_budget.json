@@ -546,6 +546,125 @@
       "sum": 137,
       "cat": "Игрушка котам",
       "date": "2026-11-10"
+    },
+    {
+      "id": "s51y50o9a",
+      "type": "expense",
+      "sum": 88,
+      "cat": "Кола",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "1v14fu6ww",
+      "type": "expense",
+      "sum": 108,
+      "cat": "Печенье ",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "o7kvdsgol",
+      "type": "expense",
+      "sum": 126,
+      "cat": "Яйца",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "f6tzdjjxi",
+      "type": "expense",
+      "sum": 114,
+      "cat": "Крабовые палочки ",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "lbppa964",
+      "type": "expense",
+      "sum": 77,
+      "cat": "Булочки для бургера",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "37y5ak9sd",
+      "type": "expense",
+      "sum": 229,
+      "cat": "Туалетная бумага ",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "ynvcqx3gh",
+      "type": "expense",
+      "sum": 20,
+      "cat": "Туалетная бум. для котов 2 шт.",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "s16w7f015",
+      "type": "expense",
+      "sum": 112,
+      "cat": "Сок апельсиновый",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "bn08oe3z1",
+      "type": "expense",
+      "sum": 41,
+      "cat": "Лук красный ",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "6e4nl1uz1",
+      "type": "expense",
+      "sum": 215,
+      "cat": "Пельмени",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "tyfzrfphk",
+      "type": "expense",
+      "sum": 99,
+      "cat": "Кукуруза",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "o650beaud",
+      "type": "expense",
+      "sum": 160,
+      "cat": "Масло сливочное",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "6fdsu9cx0",
+      "type": "expense",
+      "sum": 100,
+      "cat": "Мармелад",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "jhvylrw22",
+      "type": "expense",
+      "sum": 10,
+      "cat": "Ванилин",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "86h8kvv40",
+      "type": "expense",
+      "sum": 3,
+      "cat": "Ванилин",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "znvzose9z",
+      "type": "expense",
+      "sum": 65,
+      "cat": "Огурцы",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "3v3no6vrk",
+      "type": "expense",
+      "sum": 80,
+      "cat": "Молоко",
+      "date": "2026-11-10"
     }
   ],
   "goals": [
