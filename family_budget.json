@@ -1,5 +1,5 @@
 {
-  "author": "husband",
+  "author": "wife",
   "txs": [
     {
       "id": "rlagrfa1t",
@@ -469,6 +469,34 @@
       "date": "2026-11-09",
       "sum": 37,
       "cat": "Проезд"
+    },
+    {
+      "id": "o3s30pnpa",
+      "type": "expense",
+      "sum": 320,
+      "cat": "Фарш 2 уп",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "cj4nruxru",
+      "type": "expense",
+      "sum": 34,
+      "cat": "Батон ",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "vj2fgw8pc",
+      "type": "expense",
+      "sum": 100,
+      "cat": "Шоколад 2 шт",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "jnbahrxx7",
+      "type": "expense",
+      "sum": 100,
+      "cat": "Украшение на елку 2 шт",
+      "date": "2026-11-10"
     }
   ],
   "goals": [
