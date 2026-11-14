@@ -791,6 +791,62 @@
       "date": "2026-11-13",
       "sum": 771,
       "cat": "Аптека"
+    },
+    {
+      "id": "8ds3ro384",
+      "type": "expense",
+      "sum": 68,
+      "cat": "Сметана",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "j7q68qn0f",
+      "type": "expense",
+      "sum": 90,
+      "cat": "Ветчина",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "06fsyb3m1",
+      "type": "expense",
+      "sum": 97,
+      "cat": "Кабачки",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "uthrdbarz",
+      "type": "expense",
+      "sum": 65,
+      "cat": "Баклажан ",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "pgvlwkvhh",
+      "type": "expense",
+      "sum": 47,
+      "cat": "Помидоры ",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "rfros35ex",
+      "type": "expense",
+      "sum": 66,
+      "cat": "Перец болгарский ",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "pak3ossgj",
+      "type": "expense",
+      "sum": 140,
+      "cat": "Смесь салатная",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "tt9pccc01",
+      "type": "expense",
+      "sum": 9,
+      "cat": "Пакет",
+      "date": "2026-11-13"
     }
   ],
   "goals": [
