@@ -721,6 +721,62 @@
       "sum": 109,
       "cat": "Печенье ",
       "date": "2026-11-11"
+    },
+    {
+      "id": "hk25owk3g",
+      "type": "expense",
+      "sum": 464,
+      "cat": "Торт",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "47ipbj9l4",
+      "type": "expense",
+      "sum": 246,
+      "cat": "Филе рыбы",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "ney0cvz1p",
+      "type": "expense",
+      "sum": 123,
+      "cat": "Сок апельсиновый ",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "rmul64pgy",
+      "type": "expense",
+      "sum": 129,
+      "cat": "Овощи замороженные ",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "4gp9omxf4",
+      "type": "expense",
+      "sum": 174,
+      "cat": "Сырники",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "bs2rw9e9a",
+      "type": "expense",
+      "sum": 236,
+      "cat": "Филе индейки ",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "b48hitptt",
+      "type": "expense",
+      "sum": 102,
+      "cat": "Шампиньоны ",
+      "date": "2026-11-13"
+    },
+    {
+      "id": "z2rsaw3ah",
+      "type": "expense",
+      "sum": 58,
+      "cat": "Прокладки ",
+      "date": "2026-11-13"
     }
   ],
   "goals": [
