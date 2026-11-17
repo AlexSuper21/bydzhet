@@ -917,6 +917,83 @@
       "sum": 280,
       "cat": "Шоколадки 4 шт",
       "date": "2026-11-15"
+    },
+    {
+      "id": "kzles1lpy",
+      "type": "expense",
+      "sum": 33,
+      "cat": "Чеснок",
+      "date": "2026-11-16"
+    },
+    {
+      "id": "9p4k68jgy",
+      "type": "expense",
+      "sum": 276,
+      "cat": "Прокладки ",
+      "date": "2026-11-16"
+    },
+    {
+      "id": "599pjtcm6",
+      "type": "expense",
+      "sum": 56,
+      "cat": "Лук",
+      "date": "2026-11-16"
+    },
+    {
+      "id": "n6ho6r9b5",
+      "type": "expense",
+      "sum": 86,
+      "cat": "Кальмар ",
+      "date": "2026-11-16"
+    },
+    {
+      "id": "3jhy83f88",
+      "type": "expense",
+      "sum": 135,
+      "cat": "Бумажные полотенца ",
+      "date": "2026-11-16"
+    },
+    {
+      "id": "dwhpl1r9u",
+      "type": "expense",
+      "sum": 43,
+      "cat": "Чеснок сушеный",
+      "date": "2026-11-16"
+    },
+    {
+      "id": "8xrq1po1k",
+      "type": "expense",
+      "sum": 66,
+      "cat": "Молочный коктейль 2 шт",
+      "date": "2026-11-16"
+    },
+    {
+      "id": "u7zy1kdom",
+      "type": "expense",
+      "sum": 100,
+      "cat": "Черри",
+      "date": "2026-11-16"
+    },
+    {
+      "id": "x3znvmui8",
+      "type": "expense",
+      "sum": 36,
+      "cat": "Батон",
+      "date": "2026-11-16"
+    },
+    {
+      "id": "n2l3ha2bu",
+      "type": "expense",
+      "sum": 288,
+      "cat": "Сулугуни ",
+      "date": "2026-11-16"
+    },
+    {
+      "id": "ennh9d2go",
+      "type": "expense",
+      "sum": 168,
+      "cat": "Печенье ",
+      "date": "2026-11-16"
     }
   ],
   "goals": [
