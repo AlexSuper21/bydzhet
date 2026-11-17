@@ -1,5 +1,5 @@
 {
-  "author": "husband",
+  "author": "wife",
   "txs": [
     {
       "id": "rlagrfa1t",
@@ -861,6 +861,62 @@
       "date": "2026-11-13",
       "sum": 1153,
       "cat": "Пиво, коньяк, шампанское"
+    },
+    {
+      "id": "8ttdw7g40",
+      "type": "expense",
+      "sum": 110,
+      "cat": "Кола ",
+      "date": "2026-11-15"
+    },
+    {
+      "id": "b2olnnb58",
+      "type": "expense",
+      "sum": 36,
+      "cat": "Батон",
+      "date": "2026-11-15"
+    },
+    {
+      "id": "rxjpsbx1g",
+      "type": "expense",
+      "sum": 90,
+      "cat": "Пиво",
+      "date": "2026-11-15"
+    },
+    {
+      "id": "h92fjeuki",
+      "type": "expense",
+      "sum": 190,
+      "cat": "Пиво",
+      "date": "2026-11-15"
+    },
+    {
+      "id": "yghjhw5we",
+      "type": "expense",
+      "sum": 136,
+      "cat": "Сыр чечил",
+      "date": "2026-11-15"
+    },
+    {
+      "id": "wtzrwjsl6",
+      "type": "expense",
+      "sum": 150,
+      "cat": "Сыр ",
+      "date": "2026-11-15"
+    },
+    {
+      "id": "66wqsl5hf",
+      "type": "expense",
+      "sum": 9,
+      "cat": "Пакет",
+      "date": "2026-11-15"
+    },
+    {
+      "id": "ib2yn14cd",
+      "type": "expense",
+      "sum": 280,
+      "cat": "Шоколадки 4 шт",
+      "date": "2026-11-15"
     }
   ],
   "goals": [
