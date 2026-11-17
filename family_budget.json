@@ -994,6 +994,76 @@
       "sum": 168,
       "cat": "Печенье ",
       "date": "2026-11-16"
+    },
+    {
+      "id": "pakz6x5bh",
+      "type": "expense",
+      "sum": 288,
+      "cat": "Голень куриная",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "x23nl5afp",
+      "type": "expense",
+      "sum": 136,
+      "cat": "Сыр чечил",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "hm4nnwtoi",
+      "type": "expense",
+      "sum": 100,
+      "cat": "Рис",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "n7iqj8xi6",
+      "type": "expense",
+      "sum": 125,
+      "cat": "Хренодер",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "bifw1x5ne",
+      "type": "expense",
+      "sum": 116,
+      "cat": "Масло сливочное",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "y6pls0aet",
+      "type": "expense",
+      "sum": 100,
+      "cat": "Ветчина ",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "9qu5rdkvz",
+      "type": "expense",
+      "sum": 165,
+      "cat": "Масло сливочное",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "me2efowz6",
+      "type": "expense",
+      "sum": 200,
+      "cat": "Сок ",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "fzy9e2359",
+      "type": "expense",
+      "sum": 67,
+      "cat": "Макароны ",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "03ttoc8aj",
+      "type": "expense",
+      "sum": 107,
+      "cat": "Наггетсы",
+      "date": "2026-11-17"
     }
   ],
   "goals": [
