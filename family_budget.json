@@ -1071,6 +1071,41 @@
       "date": "2026-11-18",
       "sum": 2100,
       "cat": "Ресницы"
+    },
+    {
+      "id": "5k0a6nflb",
+      "type": "expense",
+      "sum": 350,
+      "cat": "Индейка ",
+      "date": "2026-11-18"
+    },
+    {
+      "id": "xhsspoxda",
+      "type": "expense",
+      "sum": 29,
+      "cat": "Батон",
+      "date": "2026-11-18"
+    },
+    {
+      "id": "etfwk5zo1",
+      "type": "expense",
+      "sum": 132,
+      "cat": "Йогурт 4 шт",
+      "date": "2026-11-18"
+    },
+    {
+      "id": "jte3t5fdk",
+      "type": "expense",
+      "sum": 260,
+      "cat": "Шоколадки 4 шт",
+      "date": "2026-11-18"
+    },
+    {
+      "id": "porq01tuo",
+      "type": "expense",
+      "sum": 10,
+      "cat": "Пакет",
+      "date": "2026-11-18"
     }
   ],
   "goals": [
