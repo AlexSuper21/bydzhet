@@ -1281,6 +1281,41 @@
       "sum": 152,
       "cat": "Чипсы",
       "date": "2026-11-20"
+    },
+    {
+      "id": "lawxkqgwp",
+      "type": "expense",
+      "sum": 190,
+      "cat": "Пиво",
+      "date": "2026-11-21"
+    },
+    {
+      "id": "ss9yif2dz",
+      "type": "expense",
+      "sum": 80,
+      "cat": "Лайм",
+      "date": "2026-11-21"
+    },
+    {
+      "id": "zghbitf07",
+      "type": "expense",
+      "sum": 1400,
+      "cat": "Текила",
+      "date": "2026-11-21"
+    },
+    {
+      "id": "cc9p0a0cp",
+      "type": "expense",
+      "sum": 29,
+      "cat": "Батон",
+      "date": "2026-11-21"
+    },
+    {
+      "id": "10m5tutp1",
+      "type": "expense",
+      "sum": 10,
+      "cat": "Пакет",
+      "date": "2026-11-21"
     }
   ],
   "goals": [
