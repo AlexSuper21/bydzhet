@@ -1365,6 +1365,41 @@
       "date": "2026-11-24",
       "sum": 251,
       "cat": "Пиво"
+    },
+    {
+      "id": "pye9sla3z",
+      "type": "expense",
+      "sum": 322,
+      "cat": "Индейка ",
+      "date": "2026-11-23"
+    },
+    {
+      "id": "28km7zlgc",
+      "type": "expense",
+      "sum": 296,
+      "cat": "Бургер",
+      "date": "2026-11-23"
+    },
+    {
+      "id": "o78o1gv1s",
+      "type": "expense",
+      "sum": 118,
+      "cat": "Кола",
+      "date": "2026-11-23"
+    },
+    {
+      "id": "coq5gsbqa",
+      "type": "expense",
+      "sum": 206,
+      "cat": "Туалетная бумага ",
+      "date": "2026-11-23"
+    },
+    {
+      "id": "aowh4g2ne",
+      "type": "expense",
+      "sum": 29,
+      "cat": "Хлеб",
+      "date": "2026-11-23"
     }
   ],
   "goals": [
