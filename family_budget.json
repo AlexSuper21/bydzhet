@@ -1,5 +1,5 @@
 {
-  "author": "husband",
+  "author": "wife",
   "txs": [
     {
       "id": "rlagrfa1t",
@@ -1218,6 +1218,69 @@
       "date": "2026-11-21",
       "sum": 400,
       "cat": "Такси"
+    },
+    {
+      "id": "imb27pk1k",
+      "type": "expense",
+      "sum": 62,
+      "cat": "Багет 2 шт",
+      "date": "2026-11-20"
+    },
+    {
+      "id": "y3ibhpo7q",
+      "type": "expense",
+      "sum": 125,
+      "cat": "Крабовое мясо ",
+      "date": "2026-11-20"
+    },
+    {
+      "id": "ciz8ucu9v",
+      "type": "expense",
+      "sum": 179,
+      "cat": "Чипсы",
+      "date": "2026-11-20"
+    },
+    {
+      "id": "9znlohjbh",
+      "type": "expense",
+      "sum": 207,
+      "cat": "Помидоры ",
+      "date": "2026-11-20"
+    },
+    {
+      "id": "2dpwp2mjb",
+      "type": "expense",
+      "sum": 95,
+      "cat": "Сырный соус ",
+      "date": "2026-11-20"
+    },
+    {
+      "id": "ypl67j6qr",
+      "type": "expense",
+      "sum": 116,
+      "cat": "Лук замороженный ",
+      "date": "2026-11-20"
+    },
+    {
+      "id": "u78spmfwb",
+      "type": "expense",
+      "sum": 71,
+      "cat": "Хлебцы",
+      "date": "2026-11-20"
+    },
+    {
+      "id": "me9v3y51z",
+      "type": "expense",
+      "sum": 137,
+      "cat": "Кола",
+      "date": "2026-11-20"
+    },
+    {
+      "id": "zwwatnt59",
+      "type": "expense",
+      "sum": 152,
+      "cat": "Чипсы",
+      "date": "2026-11-20"
     }
   ],
   "goals": [
