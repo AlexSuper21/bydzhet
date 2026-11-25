@@ -1,5 +1,5 @@
 {
-  "author": "husband",
+  "author": "wife",
   "txs": [
     {
       "id": "rlagrfa1t",
@@ -1400,6 +1400,13 @@
       "sum": 29,
       "cat": "Хлеб",
       "date": "2026-11-23"
+    },
+    {
+      "id": "awrbtptk6",
+      "type": "expense",
+      "date": "2026-11-25",
+      "sum": 510,
+      "cat": "Озон"
     }
   ],
   "goals": [
