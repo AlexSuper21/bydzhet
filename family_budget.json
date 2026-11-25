@@ -1407,6 +1407,41 @@
       "date": "2026-11-25",
       "sum": 510,
       "cat": "Озон"
+    },
+    {
+      "id": "4g1b1iz7q",
+      "type": "expense",
+      "sum": 110,
+      "cat": "Кола",
+      "date": "2026-11-25"
+    },
+    {
+      "id": "hcfouvm3x",
+      "type": "expense",
+      "sum": 160,
+      "cat": "Круассаны",
+      "date": "2026-11-25"
+    },
+    {
+      "id": "eb8ao7zgf",
+      "type": "expense",
+      "sum": 36,
+      "cat": "Батон",
+      "date": "2026-11-25"
+    },
+    {
+      "id": "fj5t1ddfh",
+      "type": "expense",
+      "sum": 110,
+      "cat": "Ветчина ",
+      "date": "2026-11-25"
+    },
+    {
+      "id": "bahzulwe7",
+      "type": "expense",
+      "sum": 35,
+      "cat": "Огурец",
+      "date": "2026-11-25"
     }
   ],
   "goals": [
