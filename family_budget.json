@@ -1456,6 +1456,55 @@
       "date": "2026-11-27",
       "sum": 483,
       "cat": "Аптека"
+    },
+    {
+      "id": "1rv7z4lft",
+      "type": "expense",
+      "sum": 268,
+      "cat": "Семечки 2 уп",
+      "date": "2026-11-27"
+    },
+    {
+      "id": "ui1uzgem8",
+      "type": "expense",
+      "sum": 49,
+      "cat": "Батон ",
+      "date": "2026-11-27"
+    },
+    {
+      "id": "4zfjqxf4j",
+      "type": "expense",
+      "sum": 145,
+      "cat": "Пельмени",
+      "date": "2026-11-27"
+    },
+    {
+      "id": "g0fie0zd0",
+      "type": "expense",
+      "sum": 139,
+      "cat": "Молоко",
+      "date": "2026-11-27"
+    },
+    {
+      "id": "4srlkhsyh",
+      "type": "expense",
+      "sum": 179,
+      "cat": "Чипсы",
+      "date": "2026-11-27"
+    },
+    {
+      "id": "p68ebt29a",
+      "type": "expense",
+      "sum": 142,
+      "cat": "Хлебцы 2 уп",
+      "date": "2026-11-27"
+    },
+    {
+      "id": "q6qzmyime",
+      "type": "expense",
+      "sum": 89,
+      "cat": "Сникерс",
+      "date": "2026-11-27"
     }
   ],
   "goals": [
