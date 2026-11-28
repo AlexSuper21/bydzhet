@@ -1505,6 +1505,55 @@
       "sum": 89,
       "cat": "Сникерс",
       "date": "2026-11-27"
+    },
+    {
+      "id": "c2omyoz06",
+      "type": "expense",
+      "sum": 4500,
+      "cat": "Куртка",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "mu7l8e6qh",
+      "type": "expense",
+      "sum": 5100,
+      "cat": "2 кофты ",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "8gyqyoh7r",
+      "type": "expense",
+      "sum": 1000,
+      "cat": "Шапка",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "rygsilee1",
+      "type": "expense",
+      "sum": 400,
+      "cat": "Гранатовый сок ",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "lolhtac9o",
+      "type": "expense",
+      "sum": 545,
+      "cat": "Такси",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "w7vxaqqdu",
+      "type": "expense",
+      "sum": 3369,
+      "cat": "Бургеры",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "9q53djg8t",
+      "type": "expense",
+      "sum": 429,
+      "cat": "Пиво",
+      "date": "2026-11-28"
     }
   ],
   "goals": [
