@@ -1554,6 +1554,104 @@
       "sum": 429,
       "cat": "Пиво",
       "date": "2026-11-28"
+    },
+    {
+      "id": "6kbcyhn0q",
+      "type": "expense",
+      "sum": 357,
+      "cat": "Индейка",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "feowgdr9a",
+      "type": "expense",
+      "sum": 43,
+      "cat": "Кубики магги ",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "kv35076an",
+      "type": "expense",
+      "sum": 145,
+      "cat": "Кола",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "8s7wqwzaq",
+      "type": "expense",
+      "sum": 15,
+      "cat": "Семечки",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "2b9i121e1",
+      "type": "expense",
+      "sum": 64,
+      "cat": "Макароны ",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "xj4ihtkh9",
+      "type": "expense",
+      "sum": 100,
+      "cat": "Ветчина",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "8x8ic8k4y",
+      "type": "expense",
+      "sum": 63,
+      "cat": "Сметана",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "a3elghqfa",
+      "type": "expense",
+      "sum": 39,
+      "cat": "Йогурт",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "or7j9ag3q",
+      "type": "expense",
+      "sum": 72,
+      "cat": "Творог",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "qc3rdwwnv",
+      "type": "expense",
+      "sum": 227,
+      "cat": "Пельмени ",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "t5azte8i2",
+      "type": "expense",
+      "sum": 150,
+      "cat": "Сыр",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "htwf9060z",
+      "type": "expense",
+      "sum": 66,
+      "cat": "Роллтон 2 шт",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "lr1vzyx7w",
+      "type": "expense",
+      "sum": 123,
+      "cat": "Фэри",
+      "date": "2026-11-28"
+    },
+    {
+      "id": "xs3s2srnk",
+      "type": "expense",
+      "sum": 110,
+      "cat": "Сок",
+      "date": "2026-11-28"
     }
   ],
   "goals": [
